@@ -122,12 +122,12 @@ GO
 
 CREATE TABLE [dbo].[Account](
 	[aId] [int] IDENTITY(1,1) NOT NULL,
-	[aUsername] [nvarchar](30) NULL,
-	[aPassword] [nvarchar](30) NULL,
-	[aName] [nvarchar](30) NULL,
-	[aBirthday] [date] NULL,
-	[aEmail] [nvarchar](30) NULL,
-	[aPhone] [nvarchar](10) NULL,
+	[aUsername] [nvarchar](30) NOT NULL,
+	[aPassword] [nvarchar](30) NOT NULL,
+	[aName] [nvarchar](30) NOT NULL,
+	[aBirthday] [date] NOT NULL,
+	[aEmail] [nvarchar](30) NOT NULL,
+	[aPhone] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
 (
 	[aId] ASC
@@ -143,10 +143,10 @@ GO
 
 CREATE TABLE [dbo].[Booking](
 	[bkId] [int] IDENTITY(1,1) NOT NULL,
-	[payment] [float] NULL,
+	[payment] [float] NOT NULL,
 	[bkStatus] [tinyint] NOT NULL,
-	[cancelDateTime] [datetime] NOT NULL,
-	[refund] [float] NOT NULL,
+	[cancelDateTime] [datetime]  NULL,
+	[refund] [float]  NULL,
  CONSTRAINT [PK_Booking] PRIMARY KEY CLUSTERED 
 (
 	[bkId] ASC
@@ -164,12 +164,12 @@ GO
 
 CREATE TABLE [dbo].[BookingDetails](
 	[bkdId] [int] IDENTITY(1,1) NOT NULL,
-	[bkId] [int] NULL,
-	[rId] [int] NULL,
-	[cId] [int] NULL,
-	[sId] [int] NULL,
-	[cAge] [tinyint] NULL,
-	[rPrice] [float] NULL,
+	[bkId] [int] NOT NULL,
+	[rId] [int] NOT NULL,
+	[cId] [int] NOT NULL,
+	[sId] [int] NOT NULL,
+	[cAge] [tinyint] NOT NULL,
+	[rPrice] [float] NOT NULL,
  CONSTRAINT [PK_BookingDetails] PRIMARY KEY CLUSTERED 
 (
 	[bkdId] ASC
@@ -186,11 +186,10 @@ GO
 
 CREATE TABLE [dbo].[BlockTime](
 	[btId] [int] IDENTITY(1,1) NOT NULL,
-	[StartPlace] [int] NULL,
-	[Detination] [int] NULL,
-	[StartTime] [time](7) NULL,
-	[FinishTime] [time](7) NULL,
-	[btPrice] [float] NULL,
+	[StartPlace] [int] NOT NULL,
+	[Detination] [int] NOT NULL,
+	[StartTime] [time](7) NOT NULL,
+	[btPrice] [float] NOT NULL,
  CONSTRAINT [PK_BlockTime] PRIMARY KEY CLUSTERED 
 (
 	[btId] ASC
@@ -208,8 +207,8 @@ GO
 
 CREATE TABLE [dbo].[GroupBlockTime](
 	[gbtId] [int] IDENTITY(1,1) NOT NULL,
-	[btId] [int] NULL,
-	[bId] [int] NULL,
+	[btId] [int] NOT NULL,
+	[bId] [int] NOT NULL,
  CONSTRAINT [PK_GroupBlockTime] PRIMARY KEY CLUSTERED 
 (
 	[gbtId] ASC
@@ -227,8 +226,8 @@ GO
 
 CREATE TABLE [dbo].[Bus](
 	[bId] [int] IDENTITY(1,1) NOT NULL,
-	[bNumber] [nvarchar](10) NULL,
-	[bTypeId] [int] NULL,
+	[bNumber] [nvarchar](10) NOT NULL,
+	[bTypeId] [int] NOT NULL,
  CONSTRAINT [PK_Bus] PRIMARY KEY CLUSTERED 
 (
 	[bId] ASC
@@ -246,8 +245,8 @@ GO
 
 CREATE TABLE [dbo].[BusDetails](
 	[bdTypeId] [int] IDENTITY(1,1) NOT NULL,
-	[bdType] [nvarchar](30) NULL,
-	[bdPrice] [float] NULL,
+	[bdType] [nvarchar](30) NOT NULL,
+	[bdPrice] [float] NOT NULL,
  CONSTRAINT [PK_BusDetails] PRIMARY KEY CLUSTERED 
 (
 	[bdTypeId] ASC
@@ -265,7 +264,7 @@ GO
 
 CREATE TABLE [dbo].[Counter](
 	[counId] [int] IDENTITY(1,1) NOT NULL,
-	[counName] [nvarchar](30) NULL,
+	[counName] [nvarchar](30) NOT NULL,
  CONSTRAINT [PK_Counter] PRIMARY KEY CLUSTERED 
 (
 	[counId] ASC
@@ -283,9 +282,9 @@ GO
 
 CREATE TABLE [dbo].[Customer](
 	[cId] [int] IDENTITY(1,1) NOT NULL,
-	[cName] [nvarchar](30) NULL,
-	[cBirthday] [date] NULL,
-	[cPhone] [nvarchar](10) NULL,
+	[cName] [nvarchar](30) NOT NULL,
+	[cBirthday] [date] NOT NULL,
+	[cPhone] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
 (
 	[cId] ASC
@@ -303,15 +302,15 @@ GO
 
 CREATE TABLE [dbo].[Employee](
 	[eId] [nvarchar](30) NOT NULL,
-	[eUsername] [nvarchar](30) NULL,
-	[ePassword] [nvarchar](30) NULL,
-	[eName] [nvarchar](30) NULL,
-	[eBirthday] [datetime] NULL,
-	[eAddress] [nvarchar](80) NULL,
-	[eEmail] [nvarchar](30) NULL,
-	[ePhone] [nvarchar](10) NULL,
-	[eCounterId] [int] NULL,
-	[eRole] [tinyint] NULL,
+	[eUsername] [nvarchar](30) NOT NULL,
+	[ePassword] [nvarchar](30) NOT NULL,
+	[eName] [nvarchar](30) NOT NULL,
+	[eBirthday] [datetime] NOT NULL,
+	[eAddress] [nvarchar](80) NOT NULL,
+	[eEmail] [nvarchar](30) NOT NULL,
+	[ePhone] [nvarchar](10) NOT NULL,
+	[eCounterId] [int] NOT NULL,
+	[eRole] [tinyint] NOT NULL,
  CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED 
 (
 	[eId] ASC
@@ -330,10 +329,10 @@ GO
 
 CREATE TABLE [dbo].[Route](
 	[rId] [int] IDENTITY(1,1) NOT NULL,
-	[bId] [int] NULL,
-	[btId] [int] NULL,
-	[rPrice] [float] NULL,
-	[date] [date] NULL,
+	[bId] [int] NOT NULL,
+	[btId] [int] NOT NULL,
+	[rPrice] [float] NOT NULL,
+	[date] [date] NOT NULL,
  CONSTRAINT [PK_Route] PRIMARY KEY CLUSTERED 
 (
 	[rId] ASC
@@ -352,9 +351,9 @@ GO
 
 CREATE TABLE [dbo].[RouteDetails](
 	[rdId] [int] IDENTITY(1,1) NOT NULL,
-	[rId] [int] NULL,
-	[sId] [int] NULL,
-	[avaibility] [tinyint] NULL,
+	[rId] [int] NOT NULL,
+	[sId] [int] NOT NULL,
+	[avaibility] [tinyint] NOT NULL,
  CONSTRAINT [PK_RouteDetails] PRIMARY KEY CLUSTERED 
 (
 	[rdId] ASC
@@ -372,8 +371,8 @@ GO
 
 CREATE TABLE [dbo].[Seat](
 	[sId] [int] IDENTITY(1,1) NOT NULL,
-	[bId] [int] NULL,
-	[sNumber] [nvarchar](50) NULL,
+	[bId] [int] NOT NULL,
+	[sNumber] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Seat] PRIMARY KEY CLUSTERED 
 (
 	[sId] ASC
