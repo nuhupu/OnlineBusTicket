@@ -177,35 +177,6 @@ CREATE TABLE [dbo].[BookingDetails](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Booking] FOREIGN KEY([bkId])
-REFERENCES [dbo].[Booking] ([bkId])
-GO
-
-ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Booking]
-GO
-
-ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Customer] FOREIGN KEY([cId])
-REFERENCES [dbo].[Customer] ([cId])
-GO
-
-ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Customer]
-GO
-
-ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Route] FOREIGN KEY([rId])
-REFERENCES [dbo].[Route] ([rId])
-GO
-
-ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Route]
-GO
-
-ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Seat] FOREIGN KEY([sId])
-REFERENCES [dbo].[Seat] ([sId])
-GO
-
-ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Seat]
-GO
-
-
 /****** Object:  Table [dbo].[BlockTime]    Script Date: 11/4/2019 1:10:15 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -227,20 +198,6 @@ CREATE TABLE [dbo].[BlockTime](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[BlockTime]  WITH CHECK ADD  CONSTRAINT [FK_BlockTime_Counter_Destination] FOREIGN KEY([Detination])
-REFERENCES [dbo].[Counter] ([counId])
-GO
-
-ALTER TABLE [dbo].[BlockTime] CHECK CONSTRAINT [FK_BlockTime_Counter_Destination]
-GO
-
-ALTER TABLE [dbo].[BlockTime]  WITH CHECK ADD  CONSTRAINT [FK_BlockTime_Counter_StartPlace] FOREIGN KEY([StartPlace])
-REFERENCES [dbo].[Counter] ([counId])
-GO
-
-ALTER TABLE [dbo].[BlockTime] CHECK CONSTRAINT [FK_BlockTime_Counter_StartPlace]
-GO
-
 
 /****** Object:  Table [dbo].[GroupBlockTime]    Script Date: 11/4/2019 1:10:56 PM ******/
 SET ANSI_NULLS ON
@@ -260,18 +217,6 @@ CREATE TABLE [dbo].[GroupBlockTime](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[GroupBlockTime]  WITH CHECK ADD  CONSTRAINT [FK_GroupBlockTime_BlockTime] FOREIGN KEY([btId])
-REFERENCES [dbo].[BlockTime] ([btId])
-GO
-
-ALTER TABLE [dbo].[GroupBlockTime] CHECK CONSTRAINT [FK_GroupBlockTime_BlockTime]
-GO
-ALTER TABLE [dbo].[GroupBlockTime]  WITH CHECK ADD  CONSTRAINT [FK_GroupBlockTime_Bus] FOREIGN KEY([bId])
-REFERENCES [dbo].[Bus] ([bId])
-GO
-
-ALTER TABLE [dbo].[GroupBlockTime] CHECK CONSTRAINT [FK_GroupBlockTime_Bus]
-GO
 
 /****** Object:  Table [dbo].[Bus]    Script Date: 11/4/2019 1:11:48 PM ******/
 SET ANSI_NULLS ON
@@ -290,14 +235,6 @@ CREATE TABLE [dbo].[Bus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-ALTER TABLE [dbo].[Bus]  WITH CHECK ADD  CONSTRAINT [FK_Bus_BusDetails] FOREIGN KEY([bTypeId])
-REFERENCES [dbo].[BusDetails] ([bdTypeId])
-GO
-
-ALTER TABLE [dbo].[Bus] CHECK CONSTRAINT [FK_Bus_BusDetails]
-GO
-
 
 
 /****** Object:  Table [dbo].[BusDetails]    Script Date: 11/4/2019 1:11:58 PM ******/
@@ -382,14 +319,6 @@ CREATE TABLE [dbo].[Employee](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Employee]  WITH CHECK ADD  CONSTRAINT [FK_Employee_Counter] FOREIGN KEY([eCounterId])
-REFERENCES [dbo].[Counter] ([counId])
-GO
-
-ALTER TABLE [dbo].[Employee] CHECK CONSTRAINT [FK_Employee_Counter]
-GO
-
-
 
 
 /****** Object:  Table [dbo].[Route]    Script Date: 11/4/2019 1:13:01 PM ******/
@@ -412,21 +341,6 @@ CREATE TABLE [dbo].[Route](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Route]  WITH CHECK ADD  CONSTRAINT [FK_Route_BlockTime] FOREIGN KEY([btId])
-REFERENCES [dbo].[BlockTime] ([btId])
-GO
-
-ALTER TABLE [dbo].[Route] CHECK CONSTRAINT [FK_Route_BlockTime]
-GO
-
-ALTER TABLE [dbo].[Route]  WITH CHECK ADD  CONSTRAINT [FK_Route_Bus] FOREIGN KEY([bId])
-REFERENCES [dbo].[Bus] ([bId])
-GO
-
-ALTER TABLE [dbo].[Route] CHECK CONSTRAINT [FK_Route_Bus]
-GO
-
-
 
 
 /****** Object:  Table [dbo].[RouteDetails]    Script Date: 11/4/2019 1:13:11 PM ******/
@@ -448,21 +362,6 @@ CREATE TABLE [dbo].[RouteDetails](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[RouteDetails]  WITH CHECK ADD  CONSTRAINT [FK_RouteDetails_Route] FOREIGN KEY([rId])
-REFERENCES [dbo].[Route] ([rId])
-GO
-
-ALTER TABLE [dbo].[RouteDetails] CHECK CONSTRAINT [FK_RouteDetails_Route]
-GO
-
-ALTER TABLE [dbo].[RouteDetails]  WITH CHECK ADD  CONSTRAINT [FK_RouteDetails_Seat] FOREIGN KEY([sId])
-REFERENCES [dbo].[Seat] ([sId])
-GO
-
-ALTER TABLE [dbo].[RouteDetails] CHECK CONSTRAINT [FK_RouteDetails_Seat]
-GO
-
-
 
 /****** Object:  Table [dbo].[Seat]    Script Date: 11/4/2019 1:13:25 PM ******/
 SET ANSI_NULLS ON
@@ -481,6 +380,107 @@ CREATE TABLE [dbo].[Seat](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Booking] FOREIGN KEY([bkId])
+REFERENCES [dbo].[Booking] ([bkId])
+GO
+
+ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Booking]
+GO
+
+ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Customer] FOREIGN KEY([cId])
+REFERENCES [dbo].[Customer] ([cId])
+GO
+
+ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Customer]
+GO
+
+ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Route] FOREIGN KEY([rId])
+REFERENCES [dbo].[Route] ([rId])
+GO
+
+ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Route]
+GO
+
+ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Seat] FOREIGN KEY([sId])
+REFERENCES [dbo].[Seat] ([sId])
+GO
+
+ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Seat]
+GO
+
+
+ALTER TABLE [dbo].[BlockTime]  WITH CHECK ADD  CONSTRAINT [FK_BlockTime_Counter_Destination] FOREIGN KEY([Detination])
+REFERENCES [dbo].[Counter] ([counId])
+GO
+
+ALTER TABLE [dbo].[BlockTime] CHECK CONSTRAINT [FK_BlockTime_Counter_Destination]
+GO
+
+ALTER TABLE [dbo].[BlockTime]  WITH CHECK ADD  CONSTRAINT [FK_BlockTime_Counter_StartPlace] FOREIGN KEY([StartPlace])
+REFERENCES [dbo].[Counter] ([counId])
+GO
+
+ALTER TABLE [dbo].[BlockTime] CHECK CONSTRAINT [FK_BlockTime_Counter_StartPlace]
+GO
+
+ALTER TABLE [dbo].[GroupBlockTime]  WITH CHECK ADD  CONSTRAINT [FK_GroupBlockTime_BlockTime] FOREIGN KEY([btId])
+REFERENCES [dbo].[BlockTime] ([btId])
+GO
+
+ALTER TABLE [dbo].[GroupBlockTime] CHECK CONSTRAINT [FK_GroupBlockTime_BlockTime]
+GO
+ALTER TABLE [dbo].[GroupBlockTime]  WITH CHECK ADD  CONSTRAINT [FK_GroupBlockTime_Bus] FOREIGN KEY([bId])
+REFERENCES [dbo].[Bus] ([bId])
+GO
+
+ALTER TABLE [dbo].[GroupBlockTime] CHECK CONSTRAINT [FK_GroupBlockTime_Bus]
+GO
+ALTER TABLE [dbo].[Bus]  WITH CHECK ADD  CONSTRAINT [FK_Bus_BusDetails] FOREIGN KEY([bTypeId])
+REFERENCES [dbo].[BusDetails] ([bdTypeId])
+GO
+
+ALTER TABLE [dbo].[Bus] CHECK CONSTRAINT [FK_Bus_BusDetails]
+GO
+
+
+ALTER TABLE [dbo].[Employee]  WITH CHECK ADD  CONSTRAINT [FK_Employee_Counter] FOREIGN KEY([eCounterId])
+REFERENCES [dbo].[Counter] ([counId])
+GO
+
+ALTER TABLE [dbo].[Employee] CHECK CONSTRAINT [FK_Employee_Counter]
+GO
+
+
+ALTER TABLE [dbo].[Route]  WITH CHECK ADD  CONSTRAINT [FK_Route_BlockTime] FOREIGN KEY([btId])
+REFERENCES [dbo].[BlockTime] ([btId])
+GO
+
+ALTER TABLE [dbo].[Route] CHECK CONSTRAINT [FK_Route_BlockTime]
+GO
+
+ALTER TABLE [dbo].[Route]  WITH CHECK ADD  CONSTRAINT [FK_Route_Bus] FOREIGN KEY([bId])
+REFERENCES [dbo].[Bus] ([bId])
+GO
+
+ALTER TABLE [dbo].[Route] CHECK CONSTRAINT [FK_Route_Bus]
+GO
+
+
+ALTER TABLE [dbo].[RouteDetails]  WITH CHECK ADD  CONSTRAINT [FK_RouteDetails_Route] FOREIGN KEY([rId])
+REFERENCES [dbo].[Route] ([rId])
+GO
+
+ALTER TABLE [dbo].[RouteDetails] CHECK CONSTRAINT [FK_RouteDetails_Route]
+GO
+
+ALTER TABLE [dbo].[RouteDetails]  WITH CHECK ADD  CONSTRAINT [FK_RouteDetails_Seat] FOREIGN KEY([sId])
+REFERENCES [dbo].[Seat] ([sId])
+GO
+
+ALTER TABLE [dbo].[RouteDetails] CHECK CONSTRAINT [FK_RouteDetails_Seat]
+GO
+
 
 
 ALTER TABLE [dbo].[Seat]  WITH CHECK ADD  CONSTRAINT [FK_Seat_Bus] FOREIGN KEY([bId])
