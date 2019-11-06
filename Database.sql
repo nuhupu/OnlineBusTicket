@@ -4,11 +4,8 @@ GO
 /****** Object:  Database [SRCTravelAgencies]    Script Date: 11/4/2019 12:38:21 PM ******/
 CREATE DATABASE [SRCTravelAgencies]
  CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'SRCTravelAgencies', FILENAME = N'p:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\SRCTravelAgencies.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'SRCTravelAgencies_log', FILENAME = N'p:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\SRCTravelAgencies_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
+   
+ go
 
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
