@@ -183,7 +183,7 @@ GO
 CREATE TABLE [dbo].[BlockTime](
 	[btId] [int] IDENTITY(1,1) NOT NULL,
 	[StartPlace] [int] NOT NULL,
-	[Detination] [int] NOT NULL,
+	[Destination] [int] NOT NULL,
 	[StartTime] [time](7) NOT NULL,
 	[btPrice] [float] NOT NULL,
  CONSTRAINT [PK_BlockTime] PRIMARY KEY CLUSTERED 
