@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OnlineBusTicket.Models.BlockTime>
 @{
     ViewBag.Title = "BlockTime";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -50,81 +50,90 @@
                             </tr>
                         </tfoot>
                         <tbody>
-
-
-
+                            @foreach (var item in Model)
+                            {
                             <tr>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>6:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
+                                <td>@Html.DisplayFor(modelItem => item.StartPlace)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Destination)</td>
+                                <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                                <td>@Html.DisplayFor(modelItem => item.btPrice)</td>
+                                <td>@Html.ActionLink("Edit", "Edit", new { id = item.btId }) |@Html.ActionLink("Delete", "Delete", new { id = item.btId })</td>
                             </tr>
+}
 
-                            <tr>
-                                <td>Vung Tau</td>
-                                <td>Sai Gon</td>
 
-                                <td>6:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
+                            @*<tr>
+            <td>Sai Gon</td>
+            <td>Vung Tau</td>
+            <td>6:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
 
-                            <tr>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>7:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
+        <tr>
+            <td>Vung Tau</td>
+            <td>Sai Gon</td>
 
-                            <tr>
-                                <td>Vung Tau</td>
-                                <td>Sai Gon</td>
+            <td>6:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
 
-                                <td>7:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
+        <tr>
+            <td>Sai Gon</td>
+            <td>Vung Tau</td>
+            <td>7:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
 
-                            <tr>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>7:30</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr>
-                                <td>Sai Gon</td>
-                                <td>Dong Nai</td>
+        <tr>
+            <td>Vung Tau</td>
+            <td>Sai Gon</td>
 
-                                <td>7:30</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr>
-                                <td>Vung Tau</td>
-                                <td>Sai Gon</td>
+            <td>7:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
 
-                                <td>7:30</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
+        <tr>
+            <td>Sai Gon</td>
+            <td>Vung Tau</td>
+            <td>7:30</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
+        <tr>
+            <td>Sai Gon</td>
+            <td>Dong Nai</td>
 
-                            <tr>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>8:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr><td>Vung Tau</td>
-                                <td>Sai Gon</td>
-                                
-                                <td>8:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
+            <td>7:30</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
+        <tr>
+            <td>Vung Tau</td>
+            <td>Sai Gon</td>
+
+            <td>7:30</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
+
+        <tr>
+            <td>Sai Gon</td>
+            <td>Vung Tau</td>
+            <td>8:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
+        <tr><td>Vung Tau</td>
+            <td>Sai Gon</td>
+
+            <td>8:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>*@
                         </tbody>
                     </table>
                 </div>

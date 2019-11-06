@@ -109,3 +109,7 @@ p:\Desktop\OnlineBusTicket\obj\Debug\OnlineBusTicket.csprojAssemblyReference.cac
 p:\Desktop\OnlineBusTicket\obj\Debug\OnlineBusTicket.csproj.CopyComplete
 p:\Desktop\OnlineBusTicket\obj\Debug\OnlineBusTicket.dll
 p:\Desktop\OnlineBusTicket\obj\Debug\OnlineBusTicket.pdb
+p:\Desktop\OnlineBusTicket\bin\EntityFramework.dll
+p:\Desktop\OnlineBusTicket\bin\EntityFramework.SqlServer.dll
+p:\Desktop\OnlineBusTicket\bin\EntityFramework.xml
+p:\Desktop\OnlineBusTicket\bin\EntityFramework.SqlServer.xml

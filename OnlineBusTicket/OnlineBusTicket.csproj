@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,6 +133,70 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlockTime.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockTime.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlockTime.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlockTime.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockTime.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlockTime1.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlockTime2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlockTimeData.cs" />
+    <Compile Include="Models\Booking.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingDetail.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bus.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusDetail.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Counter.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupBlockTime.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Route.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RouteDetail.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seat.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>BlockTime.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -3601,6 +3674,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\BlockTime.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BlockTime.edmx</DependentUpon>
+      <LastGenOutput>BlockTime.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BlockTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BlockTime.edmx</DependentUpon>
+      <LastGenOutput>BlockTime2.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AdminTemplate\bower.json" />
@@ -3806,6 +3889,13 @@
     <Content Include="AdminTemplate\scss\_tooltippopovers.scss" />
     <Content Include="AdminTemplate\scss\_variables.scss" />
     <Content Include="AdminTemplate\scss\_waveseffect.scss" />
+    <EntityDeploy Include="Models\BlockTime.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BlockTime.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BlockTime.edmx.diagram">
+      <DependentUpon>BlockTime.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3840,10 +3930,10 @@
     <Content Include="Views\Admin\EditBlockTime.cshtml" />
     <Content Include="Views\Admin\GroupBlockTime.cshtml" />
     <Content Include="Views\Admin\AddGroupBlockTime.cshtml" />
+    <Content Include="Views\Admin\BlockTimeT.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3857,6 +3947,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -3891,7 +3984,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

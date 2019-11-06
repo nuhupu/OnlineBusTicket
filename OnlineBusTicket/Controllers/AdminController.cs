@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineBusTicket.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace OnlineBusTicket.Controllers
 {
     public class AdminController : Controller
     {
+        BlockTimeData data = new BlockTimeData();
         // GET: Admin
         public ActionResult Index()
         {
@@ -26,9 +28,12 @@ namespace OnlineBusTicket.Controllers
 
         public ActionResult BlockTime()
         {
-            return View();
+            return View(data.GetAllBlockTimes());
         }
-
+        public ActionResult BlockTimeT()
+        {
+            return View(data.GetAllBlockTimes());
+        }
         public ActionResult AddBlockTime()
         {
             return View();
