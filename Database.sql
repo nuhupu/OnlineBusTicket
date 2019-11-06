@@ -4,8 +4,12 @@ GO
 /****** Object:  Database [SRCTravelAgencies]    Script Date: 11/4/2019 12:38:21 PM ******/
 CREATE DATABASE [SRCTravelAgencies]
  CONTAINMENT = NONE
+<<<<<<< HEAD
    
  go
+=======
+ GO
+>>>>>>> cf801ab6a82d46169d9bb8305e1b11b7cf3e7393
 
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
@@ -184,7 +188,7 @@ GO
 CREATE TABLE [dbo].[BlockTime](
 	[btId] [int] IDENTITY(1,1) NOT NULL,
 	[StartPlace] [int] NOT NULL,
-	[Detination] [int] NOT NULL,
+	[Destination] [int] NOT NULL,
 	[StartTime] [time](7) NOT NULL,
 	[btPrice] [float] NOT NULL,
  CONSTRAINT [PK_BlockTime] PRIMARY KEY CLUSTERED 
@@ -195,18 +199,18 @@ CREATE TABLE [dbo].[BlockTime](
 GO
 
 
-/****** Object:  Table [dbo].[GroupBlockTime]    Script Date: 11/4/2019 1:10:56 PM ******/
+/****** Object:  Table [dbo].[BusSchedule]    Script Date: 11/4/2019 1:10:56 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[GroupBlockTime](
+CREATE TABLE [dbo].[BusSchedule](
 	[gbtId] [int] IDENTITY(1,1) NOT NULL,
 	[btId] [int] NOT NULL,
 	[bId] [int] NOT NULL,
- CONSTRAINT [PK_GroupBlockTime] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_BusSchedule] PRIMARY KEY CLUSTERED 
 (
 	[gbtId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -420,17 +424,17 @@ GO
 ALTER TABLE [dbo].[BlockTime] CHECK CONSTRAINT [FK_BlockTime_Counter_StartPlace]
 GO
 
-ALTER TABLE [dbo].[GroupBlockTime]  WITH CHECK ADD  CONSTRAINT [FK_GroupBlockTime_BlockTime] FOREIGN KEY([btId])
+ALTER TABLE [dbo].[BusSchedule]  WITH CHECK ADD  CONSTRAINT [FK_BusSchedule_BlockTime] FOREIGN KEY([btId])
 REFERENCES [dbo].[BlockTime] ([btId])
 GO
 
-ALTER TABLE [dbo].[GroupBlockTime] CHECK CONSTRAINT [FK_GroupBlockTime_BlockTime]
+ALTER TABLE [dbo].[BusSchedule] CHECK CONSTRAINT [FK_BusSchedule_BlockTime]
 GO
-ALTER TABLE [dbo].[GroupBlockTime]  WITH CHECK ADD  CONSTRAINT [FK_GroupBlockTime_Bus] FOREIGN KEY([bId])
+ALTER TABLE [dbo].[BusSchedule]  WITH CHECK ADD  CONSTRAINT [FK_BusSchedule_Bus] FOREIGN KEY([bId])
 REFERENCES [dbo].[Bus] ([bId])
 GO
 
-ALTER TABLE [dbo].[GroupBlockTime] CHECK CONSTRAINT [FK_GroupBlockTime_Bus]
+ALTER TABLE [dbo].[BusSchedule] CHECK CONSTRAINT [FK_BusSchedule_Bus]
 GO
 ALTER TABLE [dbo].[Bus]  WITH CHECK ADD  CONSTRAINT [FK_Bus_BusDetails] FOREIGN KEY([bTypeId])
 REFERENCES [dbo].[BusDetails] ([bdTypeId])

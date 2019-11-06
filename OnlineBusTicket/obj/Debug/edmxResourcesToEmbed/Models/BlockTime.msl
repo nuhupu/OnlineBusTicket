@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SRCTravelAgenciesModelStoreContainer" CdmEntityContainer="SRCTravelAgenciesEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="aId" ColumnName="aId" />
+          <ScalarProperty Name="aUsername" ColumnName="aUsername" />
+          <ScalarProperty Name="aPassword" ColumnName="aPassword" />
+          <ScalarProperty Name="aName" ColumnName="aName" />
+          <ScalarProperty Name="aBirthday" ColumnName="aBirthday" />
+          <ScalarProperty Name="aEmail" ColumnName="aEmail" />
+          <ScalarProperty Name="aPhone" ColumnName="aPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlockTimes">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.BlockTime">
+        <MappingFragment StoreEntitySet="BlockTime">
+          <ScalarProperty Name="btId" ColumnName="btId" />
+          <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="btPrice" ColumnName="btPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlockTimes1">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.BlockTime1">
+        <MappingFragment StoreEntitySet="BlockTimes">
+          <ScalarProperty Name="btId" ColumnName="btId" />
+          <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="bkId" ColumnName="bkId" />
+          <ScalarProperty Name="payment" ColumnName="payment" />
+          <ScalarProperty Name="bkStatus" ColumnName="bkStatus" />
+          <ScalarProperty Name="cancelDateTime" ColumnName="cancelDateTime" />
+          <ScalarProperty Name="refund" ColumnName="refund" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetails">
+          <ScalarProperty Name="bkdId" ColumnName="bkdId" />
+          <ScalarProperty Name="bkId" ColumnName="bkId" />
+          <ScalarProperty Name="rId" ColumnName="rId" />
+          <ScalarProperty Name="cId" ColumnName="cId" />
+          <ScalarProperty Name="sId" ColumnName="sId" />
+          <ScalarProperty Name="cAge" ColumnName="cAge" />
+          <ScalarProperty Name="rPrice" ColumnName="rPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buses">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Bus">
+        <MappingFragment StoreEntitySet="Bus">
+          <ScalarProperty Name="bId" ColumnName="bId" />
+          <ScalarProperty Name="bNumber" ColumnName="bNumber" />
+          <ScalarProperty Name="bTypeId" ColumnName="bTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusDetails">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.BusDetail">
+        <MappingFragment StoreEntitySet="BusDetails">
+          <ScalarProperty Name="bdTypeId" ColumnName="bdTypeId" />
+          <ScalarProperty Name="bdType" ColumnName="bdType" />
+          <ScalarProperty Name="bdPrice" ColumnName="bdPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Counters">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Counter">
+        <MappingFragment StoreEntitySet="Counter">
+          <ScalarProperty Name="counId" ColumnName="counId" />
+          <ScalarProperty Name="counName" ColumnName="counName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="cId" ColumnName="cId" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="cBirthday" ColumnName="cBirthday" />
+          <ScalarProperty Name="cPhone" ColumnName="cPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="eId" ColumnName="eId" />
+          <ScalarProperty Name="eUsername" ColumnName="eUsername" />
+          <ScalarProperty Name="ePassword" ColumnName="ePassword" />
+          <ScalarProperty Name="eName" ColumnName="eName" />
+          <ScalarProperty Name="eBirthday" ColumnName="eBirthday" />
+          <ScalarProperty Name="eAddress" ColumnName="eAddress" />
+          <ScalarProperty Name="eEmail" ColumnName="eEmail" />
+          <ScalarProperty Name="ePhone" ColumnName="ePhone" />
+          <ScalarProperty Name="eCounterId" ColumnName="eCounterId" />
+          <ScalarProperty Name="eRole" ColumnName="eRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupBlockTimes">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.GroupBlockTime">
+        <MappingFragment StoreEntitySet="GroupBlockTime">
+          <ScalarProperty Name="gbtId" ColumnName="gbtId" />
+          <ScalarProperty Name="btId" ColumnName="btId" />
+          <ScalarProperty Name="bId" ColumnName="bId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Route">
+        <MappingFragment StoreEntitySet="Route">
+          <ScalarProperty Name="rId" ColumnName="rId" />
+          <ScalarProperty Name="bId" ColumnName="bId" />
+          <ScalarProperty Name="btId" ColumnName="btId" />
+          <ScalarProperty Name="rPrice" ColumnName="rPrice" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RouteDetails">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.RouteDetail">
+        <MappingFragment StoreEntitySet="RouteDetails">
+          <ScalarProperty Name="rdId" ColumnName="rdId" />
+          <ScalarProperty Name="rId" ColumnName="rId" />
+          <ScalarProperty Name="sId" ColumnName="sId" />
+          <ScalarProperty Name="avaibility" ColumnName="avaibility" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seats">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Seat">
+        <MappingFragment StoreEntitySet="Seat">
+          <ScalarProperty Name="sId" ColumnName="sId" />
+          <ScalarProperty Name="bId" ColumnName="bId" />
+          <ScalarProperty Name="sNumber" ColumnName="sNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SRCTravelAgenciesModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

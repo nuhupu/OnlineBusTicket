@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SRCTravelAgenciesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="aId" />
+    </Key>
+    <Property Name="aId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aUsername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="aPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="aName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="aBirthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="aEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="aPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlockTime">
+    <Key>
+      <PropertyRef Name="btId" />
+    </Key>
+    <Property Name="btId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartPlace" Type="Int32" Nullable="false" />
+    <Property Name="Destination" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="btPrice" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Counter" Relationship="Self.FK_BlockTime_Counter_Destination" FromRole="BlockTime" ToRole="Counter" />
+    <NavigationProperty Name="Counter1" Relationship="Self.FK_BlockTime_Counter_StartPlace" FromRole="BlockTime" ToRole="Counter" />
+    <NavigationProperty Name="GroupBlockTimes" Relationship="Self.FK_GroupBlockTime_BlockTime" FromRole="BlockTime" ToRole="GroupBlockTime" />
+    <NavigationProperty Name="Routes" Relationship="Self.FK_Route_BlockTime" FromRole="BlockTime" ToRole="Route" />
+  </EntityType>
+  <EntityType Name="BlockTime1">
+    <Key>
+      <PropertyRef Name="btId" />
+    </Key>
+    <Property Name="btId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartPlace" Type="Int32" Nullable="false" />
+    <Property Name="Destination" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Price" Type="Single" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="bkId" />
+    </Key>
+    <Property Name="bkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="payment" Type="Double" Nullable="false" />
+    <Property Name="bkStatus" Type="Byte" Nullable="false" />
+    <Property Name="cancelDateTime" Type="DateTime" Precision="3" />
+    <Property Name="refund" Type="Double" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK_BookingDetails_Booking" FromRole="Booking" ToRole="BookingDetails" />
+  </EntityType>
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="bkdId" />
+    </Key>
+    <Property Name="bkdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bkId" Type="Int32" Nullable="false" />
+    <Property Name="rId" Type="Int32" Nullable="false" />
+    <Property Name="cId" Type="Int32" Nullable="false" />
+    <Property Name="sId" Type="Int32" Nullable="false" />
+    <Property Name="cAge" Type="Byte" Nullable="false" />
+    <Property Name="rPrice" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Booking" Relationship="Self.FK_BookingDetails_Booking" FromRole="BookingDetails" ToRole="Booking" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_BookingDetails_Customer" FromRole="BookingDetails" ToRole="Customer" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_BookingDetails_Route" FromRole="BookingDetails" ToRole="Route" />
+    <NavigationProperty Name="Seat" Relationship="Self.FK_BookingDetails_Seat" FromRole="BookingDetails" ToRole="Seat" />
+  </EntityType>
+  <EntityType Name="Bus">
+    <Key>
+      <PropertyRef Name="bId" />
+    </Key>
+    <Property Name="bId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BusDetail" Relationship="Self.FK_Bus_BusDetails" FromRole="Bus" ToRole="BusDetails" />
+    <NavigationProperty Name="GroupBlockTimes" Relationship="Self.FK_GroupBlockTime_Bus" FromRole="Bus" ToRole="GroupBlockTime" />
+    <NavigationProperty Name="Routes" Relationship="Self.FK_Route_Bus" FromRole="Bus" ToRole="Route" />
+    <NavigationProperty Name="Seats" Relationship="Self.FK_Seat_Bus" FromRole="Bus" ToRole="Seat" />
+  </EntityType>
+  <EntityType Name="BusDetail">
+    <Key>
+      <PropertyRef Name="bdTypeId" />
+    </Key>
+    <Property Name="bdTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bdType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bdPrice" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Buses" Relationship="Self.FK_Bus_BusDetails" FromRole="BusDetails" ToRole="Bus" />
+  </EntityType>
+  <EntityType Name="Counter">
+    <Key>
+      <PropertyRef Name="counId" />
+    </Key>
+    <Property Name="counId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="counName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BlockTimes" Relationship="Self.FK_BlockTime_Counter_Destination" FromRole="Counter" ToRole="BlockTime" />
+    <NavigationProperty Name="BlockTimes1" Relationship="Self.FK_BlockTime_Counter_StartPlace" FromRole="Counter" ToRole="BlockTime" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Counter" FromRole="Counter" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="cId" />
+    </Key>
+    <Property Name="cId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cBirthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK_BookingDetails_Customer" FromRole="Customer" ToRole="BookingDetails" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="eId" />
+    </Key>
+    <Property Name="eId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eUsername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ePassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eBirthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="eAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ePhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eCounterId" Type="Int32" Nullable="false" />
+    <Property Name="eRole" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Counter" Relationship="Self.FK_Employee_Counter" FromRole="Employee" ToRole="Counter" />
+  </EntityType>
+  <EntityType Name="GroupBlockTime">
+    <Key>
+      <PropertyRef Name="gbtId" />
+    </Key>
+    <Property Name="gbtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="btId" Type="Int32" Nullable="false" />
+    <Property Name="bId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BlockTime" Relationship="Self.FK_GroupBlockTime_BlockTime" FromRole="GroupBlockTime" ToRole="BlockTime" />
+    <NavigationProperty Name="Bus" Relationship="Self.FK_GroupBlockTime_Bus" FromRole="GroupBlockTime" ToRole="Bus" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="rId" />
+    </Key>
+    <Property Name="rId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bId" Type="Int32" Nullable="false" />
+    <Property Name="btId" Type="Int32" Nullable="false" />
+    <Property Name="rPrice" Type="Double" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="BlockTime" Relationship="Self.FK_Route_BlockTime" FromRole="Route" ToRole="BlockTime" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK_BookingDetails_Route" FromRole="Route" ToRole="BookingDetails" />
+    <NavigationProperty Name="Bus" Relationship="Self.FK_Route_Bus" FromRole="Route" ToRole="Bus" />
+    <NavigationProperty Name="RouteDetails" Relationship="Self.FK_RouteDetails_Route" FromRole="Route" ToRole="RouteDetails" />
+  </EntityType>
+  <EntityType Name="RouteDetail">
+    <Key>
+      <PropertyRef Name="rdId" />
+    </Key>
+    <Property Name="rdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rId" Type="Int32" Nullable="false" />
+    <Property Name="sId" Type="Int32" Nullable="false" />
+    <Property Name="avaibility" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_RouteDetails_Route" FromRole="RouteDetails" ToRole="Route" />
+    <NavigationProperty Name="Seat" Relationship="Self.FK_RouteDetails_Seat" FromRole="RouteDetails" ToRole="Seat" />
+  </EntityType>
+  <EntityType Name="Seat">
+    <Key>
+      <PropertyRef Name="sId" />
+    </Key>
+    <Property Name="sId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bId" Type="Int32" Nullable="false" />
+    <Property Name="sNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookingDetails" Relationship="Self.FK_BookingDetails_Seat" FromRole="Seat" ToRole="BookingDetails" />
+    <NavigationProperty Name="Bus" Relationship="Self.FK_Seat_Bus" FromRole="Seat" ToRole="Bus" />
+    <NavigationProperty Name="RouteDetails" Relationship="Self.FK_RouteDetails_Seat" FromRole="Seat" ToRole="RouteDetails" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_BlockTime_Counter_Destination">
+    <End Role="Counter" Type="Self.Counter" Multiplicity="1" />
+    <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counter">
+        <PropertyRef Name="counId" />
+      </Principal>
+      <Dependent Role="BlockTime">
+        <PropertyRef Name="Destination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlockTime_Counter_StartPlace">
+    <End Role="Counter" Type="Self.Counter" Multiplicity="1" />
+    <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counter">
+        <PropertyRef Name="counId" />
+      </Principal>
+      <Dependent Role="BlockTime">
+        <PropertyRef Name="StartPlace" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupBlockTime_BlockTime">
+    <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="1" />
+    <End Role="GroupBlockTime" Type="Self.GroupBlockTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlockTime">
+        <PropertyRef Name="btId" />
+      </Principal>
+      <Dependent Role="GroupBlockTime">
+        <PropertyRef Name="btId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_BlockTime">
+    <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlockTime">
+        <PropertyRef Name="btId" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="btId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDetails_Booking">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="bkId" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="bkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDetails_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="cId" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="cId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDetails_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="1" />
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="rId" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="rId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDetails_Seat">
+    <End Role="Seat" Type="Self.Seat" Multiplicity="1" />
+    <End Role="BookingDetails" Type="Self.BookingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seat">
+        <PropertyRef Name="sId" />
+      </Principal>
+      <Dependent Role="BookingDetails">
+        <PropertyRef Name="sId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bus_BusDetails">
+    <End Role="BusDetails" Type="Self.BusDetail" Multiplicity="1" />
+    <End Role="Bus" Type="Self.Bus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusDetails">
+        <PropertyRef Name="bdTypeId" />
+      </Principal>
+      <Dependent Role="Bus">
+        <PropertyRef Name="bTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupBlockTime_Bus">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
+    <End Role="GroupBlockTime" Type="Self.GroupBlockTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="bId" />
+      </Principal>
+      <Dependent Role="GroupBlockTime">
+        <PropertyRef Name="bId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_Bus">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="bId" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="bId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seat_Bus">
+    <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
+    <End Role="Seat" Type="Self.Seat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bus">
+        <PropertyRef Name="bId" />
+      </Principal>
+      <Dependent Role="Seat">
+        <PropertyRef Name="bId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Counter">
+    <End Role="Counter" Type="Self.Counter" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counter">
+        <PropertyRef Name="counId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="eCounterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RouteDetails_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="1" />
+    <End Role="RouteDetails" Type="Self.RouteDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="rId" />
+      </Principal>
+      <Dependent Role="RouteDetails">
+        <PropertyRef Name="rId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RouteDetails_Seat">
+    <End Role="Seat" Type="Self.Seat" Multiplicity="1" />
+    <End Role="RouteDetails" Type="Self.RouteDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seat">
+        <PropertyRef Name="sId" />
+      </Principal>
+      <Dependent Role="RouteDetails">
+        <PropertyRef Name="sId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SRCTravelAgenciesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="BlockTimes" EntityType="Self.BlockTime" />
+    <EntitySet Name="BlockTimes1" EntityType="Self.BlockTime1" />
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
+    <EntitySet Name="Buses" EntityType="Self.Bus" />
+    <EntitySet Name="BusDetails" EntityType="Self.BusDetail" />
+    <EntitySet Name="Counters" EntityType="Self.Counter" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="GroupBlockTimes" EntityType="Self.GroupBlockTime" />
+    <EntitySet Name="Routes" EntityType="Self.Route" />
+    <EntitySet Name="RouteDetails" EntityType="Self.RouteDetail" />
+    <EntitySet Name="Seats" EntityType="Self.Seat" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_BlockTime_Counter_Destination" Association="Self.FK_BlockTime_Counter_Destination">
+      <End Role="Counter" EntitySet="Counters" />
+      <End Role="BlockTime" EntitySet="BlockTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlockTime_Counter_StartPlace" Association="Self.FK_BlockTime_Counter_StartPlace">
+      <End Role="Counter" EntitySet="Counters" />
+      <End Role="BlockTime" EntitySet="BlockTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupBlockTime_BlockTime" Association="Self.FK_GroupBlockTime_BlockTime">
+      <End Role="BlockTime" EntitySet="BlockTimes" />
+      <End Role="GroupBlockTime" EntitySet="GroupBlockTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_BlockTime" Association="Self.FK_Route_BlockTime">
+      <End Role="BlockTime" EntitySet="BlockTimes" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDetails_Booking" Association="Self.FK_BookingDetails_Booking">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDetails_Customer" Association="Self.FK_BookingDetails_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDetails_Route" Association="Self.FK_BookingDetails_Route">
+      <End Role="Route" EntitySet="Routes" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDetails_Seat" Association="Self.FK_BookingDetails_Seat">
+      <End Role="Seat" EntitySet="Seats" />
+      <End Role="BookingDetails" EntitySet="BookingDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bus_BusDetails" Association="Self.FK_Bus_BusDetails">
+      <End Role="BusDetails" EntitySet="BusDetails" />
+      <End Role="Bus" EntitySet="Buses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupBlockTime_Bus" Association="Self.FK_GroupBlockTime_Bus">
+      <End Role="Bus" EntitySet="Buses" />
+      <End Role="GroupBlockTime" EntitySet="GroupBlockTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_Bus" Association="Self.FK_Route_Bus">
+      <End Role="Bus" EntitySet="Buses" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seat_Bus" Association="Self.FK_Seat_Bus">
+      <End Role="Bus" EntitySet="Buses" />
+      <End Role="Seat" EntitySet="Seats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Counter" Association="Self.FK_Employee_Counter">
+      <End Role="Counter" EntitySet="Counters" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RouteDetails_Route" Association="Self.FK_RouteDetails_Route">
+      <End Role="Route" EntitySet="Routes" />
+      <End Role="RouteDetails" EntitySet="RouteDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RouteDetails_Seat" Association="Self.FK_RouteDetails_Seat">
+      <End Role="Seat" EntitySet="Seats" />
+      <End Role="RouteDetails" EntitySet="RouteDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "EditBlockTime";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="body">
+                <h2>Add Block Time</h2>
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                        <b>Start Place</b>
+                        <select class="form-control show-tick">
+                            <option value="">Sai Gon</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+
+                        <b>Destination</b>
+                        <select class="form-control show-tick">
+                            <option value="">Vung Tau</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+
+                        <b>Departure Time</b>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">access_time</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control time24" placeholder="Enter desparture time">
+                            </div>
+                        </div>
+
+
+                        <b>Price</b>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">attach_money</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control money-dollar" placeholder="Enter price">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary m-t-15 waves-effect">Add block time</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
