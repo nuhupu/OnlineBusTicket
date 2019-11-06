@@ -4,12 +4,11 @@ GO
 /****** Object:  Database [SRCTravelAgencies]    Script Date: 11/4/2019 12:38:21 PM ******/
 CREATE DATABASE [SRCTravelAgencies]
  CONTAINMENT = NONE
-<<<<<<< HEAD
+
    
- go
-=======
+
  GO
->>>>>>> cf801ab6a82d46169d9bb8305e1b11b7cf3e7393
+
 
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
@@ -410,7 +409,7 @@ ALTER TABLE [dbo].[BookingDetails] CHECK CONSTRAINT [FK_BookingDetails_Seat]
 GO
 
 
-ALTER TABLE [dbo].[BlockTime]  WITH CHECK ADD  CONSTRAINT [FK_BlockTime_Counter_Destination] FOREIGN KEY([Detination])
+ALTER TABLE [dbo].[BlockTime]  WITH CHECK ADD  CONSTRAINT [FK_BlockTime_Counter_Destination] FOREIGN KEY([Destination])
 REFERENCES [dbo].[Counter] ([counId])
 GO
 
