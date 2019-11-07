@@ -17,7 +17,7 @@ namespace OnlineBusTicket.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bus()
         {
-            this.GroupBlockTimes = new HashSet<GroupBlockTime>();
+            this.BusSchedules = new HashSet<BusSchedule>();
             this.Routes = new HashSet<Route>();
             this.Seats = new HashSet<Seat>();
         }
@@ -28,7 +28,7 @@ namespace OnlineBusTicket.Models
     
         public virtual BusDetail BusDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GroupBlockTime> GroupBlockTimes { get; set; }
+        public virtual ICollection<BusSchedule> BusSchedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Route> Routes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

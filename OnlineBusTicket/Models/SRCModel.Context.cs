@@ -25,18 +25,16 @@ namespace OnlineBusTicket.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<BlockTime> BlockTimes { get; set; }
-        public virtual DbSet<BlockTime1> BlockTimes1 { get; set; }
         public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<BookingDetail> BookingDetails { get; set; }
         public virtual DbSet<Bus> Buses { get; set; }
         public virtual DbSet<BusDetail> BusDetails { get; set; }
+        public virtual DbSet<BusSchedule> BusSchedules { get; set; }
         public virtual DbSet<Counter> Counters { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<GroupBlockTime> GroupBlockTimes { get; set; }
         public virtual DbSet<Route> Routes { get; set; }
         public virtual DbSet<RouteDetail> RouteDetails { get; set; }
         public virtual DbSet<Seat> Seats { get; set; }

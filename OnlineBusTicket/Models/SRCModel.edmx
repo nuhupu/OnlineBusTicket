@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="SRCTravelAgenciesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="aId" />
@@ -36,16 +26,6 @@
           <Property Name="Destination" Type="int" Nullable="false" />
           <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="btPrice" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="BlockTimes">
-          <Key>
-            <PropertyRef Name="btId" />
-          </Key>
-          <Property Name="btId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StartPlace" Type="int" Nullable="false" />
-          <Property Name="Destination" Type="int" Nullable="false" />
-          <Property Name="StartTime" Type="datetime" Nullable="false" />
-          <Property Name="Price" Type="real" Nullable="false" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
@@ -85,6 +65,14 @@
           <Property Name="bdType" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="bdPrice" Type="float" Nullable="false" />
         </EntityType>
+        <EntityType Name="BusSchedule">
+          <Key>
+            <PropertyRef Name="gbtId" />
+          </Key>
+          <Property Name="gbtId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="btId" Type="int" Nullable="false" />
+          <Property Name="bId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Counter">
           <Key>
             <PropertyRef Name="counId" />
@@ -115,14 +103,6 @@
           <Property Name="ePhone" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="eCounterId" Type="int" Nullable="false" />
           <Property Name="eRole" Type="tinyint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="GroupBlockTime">
-          <Key>
-            <PropertyRef Name="gbtId" />
-          </Key>
-          <Property Name="gbtId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="btId" Type="int" Nullable="false" />
-          <Property Name="bId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Route">
           <Key>
@@ -245,6 +225,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BusSchedule_BlockTime">
+          <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="1" />
+          <End Role="BusSchedule" Type="Self.BusSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlockTime">
+              <PropertyRef Name="btId" />
+            </Principal>
+            <Dependent Role="BusSchedule">
+              <PropertyRef Name="btId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusSchedule_Bus">
+          <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
+          <End Role="BusSchedule" Type="Self.BusSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bus">
+              <PropertyRef Name="bId" />
+            </Principal>
+            <Dependent Role="BusSchedule">
+              <PropertyRef Name="bId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Counter">
           <End Role="Counter" Type="Self.Counter" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -254,30 +258,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="eCounterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupBlockTime_BlockTime">
-          <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="1" />
-          <End Role="GroupBlockTime" Type="Self.GroupBlockTime" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BlockTime">
-              <PropertyRef Name="btId" />
-            </Principal>
-            <Dependent Role="GroupBlockTime">
-              <PropertyRef Name="btId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GroupBlockTime_Bus">
-          <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
-          <End Role="GroupBlockTime" Type="Self.GroupBlockTime" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bus">
-              <PropertyRef Name="bId" />
-            </Principal>
-            <Dependent Role="GroupBlockTime">
-              <PropertyRef Name="bId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,18 +322,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SRCTravelAgenciesModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BlockTime" EntityType="Self.BlockTime" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BlockTimes" EntityType="Self.BlockTimes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingDetails" EntityType="Self.BookingDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bus" EntityType="Self.Bus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusDetails" EntityType="Self.BusDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusSchedule" EntityType="Self.BusSchedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Counter" EntityType="Self.Counter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GroupBlockTime" EntityType="Self.GroupBlockTime" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RouteDetails" EntityType="Self.RouteDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seat" EntityType="Self.Seat" Schema="dbo" store:Type="Tables" />
@@ -386,17 +364,17 @@
             <End Role="BusDetails" EntitySet="BusDetails" />
             <End Role="Bus" EntitySet="Bus" />
           </AssociationSet>
+          <AssociationSet Name="FK_BusSchedule_BlockTime" Association="Self.FK_BusSchedule_BlockTime">
+            <End Role="BlockTime" EntitySet="BlockTime" />
+            <End Role="BusSchedule" EntitySet="BusSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusSchedule_Bus" Association="Self.FK_BusSchedule_Bus">
+            <End Role="Bus" EntitySet="Bus" />
+            <End Role="BusSchedule" EntitySet="BusSchedule" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Counter" Association="Self.FK_Employee_Counter">
             <End Role="Counter" EntitySet="Counter" />
             <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupBlockTime_BlockTime" Association="Self.FK_GroupBlockTime_BlockTime">
-            <End Role="BlockTime" EntitySet="BlockTime" />
-            <End Role="GroupBlockTime" EntitySet="GroupBlockTime" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GroupBlockTime_Bus" Association="Self.FK_GroupBlockTime_Bus">
-            <End Role="Bus" EntitySet="Bus" />
-            <End Role="GroupBlockTime" EntitySet="GroupBlockTime" />
           </AssociationSet>
           <AssociationSet Name="FK_Route_BlockTime" Association="Self.FK_Route_BlockTime">
             <End Role="BlockTime" EntitySet="BlockTime" />
@@ -424,16 +402,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SRCTravelAgenciesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="aId" />
@@ -457,18 +425,8 @@
           <Property Name="btPrice" Type="Double" Nullable="false" />
           <NavigationProperty Name="Counter" Relationship="Self.FK_BlockTime_Counter_Destination" FromRole="BlockTime" ToRole="Counter" />
           <NavigationProperty Name="Counter1" Relationship="Self.FK_BlockTime_Counter_StartPlace" FromRole="BlockTime" ToRole="Counter" />
-          <NavigationProperty Name="GroupBlockTimes" Relationship="Self.FK_GroupBlockTime_BlockTime" FromRole="BlockTime" ToRole="GroupBlockTime" />
+          <NavigationProperty Name="BusSchedules" Relationship="Self.FK_BusSchedule_BlockTime" FromRole="BlockTime" ToRole="BusSchedule" />
           <NavigationProperty Name="Routes" Relationship="Self.FK_Route_BlockTime" FromRole="BlockTime" ToRole="Route" />
-        </EntityType>
-        <EntityType Name="BlockTime1">
-          <Key>
-            <PropertyRef Name="btId" />
-          </Key>
-          <Property Name="btId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartPlace" Type="Int32" Nullable="false" />
-          <Property Name="Destination" Type="Int32" Nullable="false" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Price" Type="Single" Nullable="false" />
         </EntityType>
         <EntityType Name="Booking">
           <Key>
@@ -505,7 +463,7 @@
           <Property Name="bNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="bTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BusDetail" Relationship="Self.FK_Bus_BusDetails" FromRole="Bus" ToRole="BusDetails" />
-          <NavigationProperty Name="GroupBlockTimes" Relationship="Self.FK_GroupBlockTime_Bus" FromRole="Bus" ToRole="GroupBlockTime" />
+          <NavigationProperty Name="BusSchedules" Relationship="Self.FK_BusSchedule_Bus" FromRole="Bus" ToRole="BusSchedule" />
           <NavigationProperty Name="Routes" Relationship="Self.FK_Route_Bus" FromRole="Bus" ToRole="Route" />
           <NavigationProperty Name="Seats" Relationship="Self.FK_Seat_Bus" FromRole="Bus" ToRole="Seat" />
         </EntityType>
@@ -517,6 +475,16 @@
           <Property Name="bdType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="bdPrice" Type="Double" Nullable="false" />
           <NavigationProperty Name="Buses" Relationship="Self.FK_Bus_BusDetails" FromRole="BusDetails" ToRole="Bus" />
+        </EntityType>
+        <EntityType Name="BusSchedule">
+          <Key>
+            <PropertyRef Name="gbtId" />
+          </Key>
+          <Property Name="gbtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="btId" Type="Int32" Nullable="false" />
+          <Property Name="bId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BlockTime" Relationship="Self.FK_BusSchedule_BlockTime" FromRole="BusSchedule" ToRole="BlockTime" />
+          <NavigationProperty Name="Bus" Relationship="Self.FK_BusSchedule_Bus" FromRole="BusSchedule" ToRole="Bus" />
         </EntityType>
         <EntityType Name="Counter">
           <Key>
@@ -553,16 +521,6 @@
           <Property Name="eCounterId" Type="Int32" Nullable="false" />
           <Property Name="eRole" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Counter" Relationship="Self.FK_Employee_Counter" FromRole="Employee" ToRole="Counter" />
-        </EntityType>
-        <EntityType Name="GroupBlockTime">
-          <Key>
-            <PropertyRef Name="gbtId" />
-          </Key>
-          <Property Name="gbtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="btId" Type="Int32" Nullable="false" />
-          <Property Name="bId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BlockTime" Relationship="Self.FK_GroupBlockTime_BlockTime" FromRole="GroupBlockTime" ToRole="BlockTime" />
-          <NavigationProperty Name="Bus" Relationship="Self.FK_GroupBlockTime_Bus" FromRole="GroupBlockTime" ToRole="Bus" />
         </EntityType>
         <EntityType Name="Route">
           <Key>
@@ -634,14 +592,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupBlockTime_BlockTime">
+        <Association Name="FK_BusSchedule_BlockTime">
           <End Role="BlockTime" Type="Self.BlockTime" Multiplicity="1" />
-          <End Role="GroupBlockTime" Type="Self.GroupBlockTime" Multiplicity="*" />
+          <End Role="BusSchedule" Type="Self.BusSchedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BlockTime">
               <PropertyRef Name="btId" />
             </Principal>
-            <Dependent Role="GroupBlockTime">
+            <Dependent Role="BusSchedule">
               <PropertyRef Name="btId" />
             </Dependent>
           </ReferentialConstraint>
@@ -718,14 +676,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GroupBlockTime_Bus">
+        <Association Name="FK_BusSchedule_Bus">
           <End Role="Bus" Type="Self.Bus" Multiplicity="1" />
-          <End Role="GroupBlockTime" Type="Self.GroupBlockTime" Multiplicity="*" />
+          <End Role="BusSchedule" Type="Self.BusSchedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Bus">
               <PropertyRef Name="bId" />
             </Principal>
-            <Dependent Role="GroupBlockTime">
+            <Dependent Role="BusSchedule">
               <PropertyRef Name="bId" />
             </Dependent>
           </ReferentialConstraint>
@@ -791,18 +749,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SRCTravelAgenciesEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="BlockTimes" EntityType="Self.BlockTime" />
-          <EntitySet Name="BlockTimes1" EntityType="Self.BlockTime1" />
           <EntitySet Name="Bookings" EntityType="Self.Booking" />
           <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
           <EntitySet Name="Buses" EntityType="Self.Bus" />
           <EntitySet Name="BusDetails" EntityType="Self.BusDetail" />
+          <EntitySet Name="BusSchedules" EntityType="Self.BusSchedule" />
           <EntitySet Name="Counters" EntityType="Self.Counter" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="GroupBlockTimes" EntityType="Self.GroupBlockTime" />
           <EntitySet Name="Routes" EntityType="Self.Route" />
           <EntitySet Name="RouteDetails" EntityType="Self.RouteDetail" />
           <EntitySet Name="Seats" EntityType="Self.Seat" />
@@ -815,9 +771,9 @@
             <End Role="Counter" EntitySet="Counters" />
             <End Role="BlockTime" EntitySet="BlockTimes" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupBlockTime_BlockTime" Association="Self.FK_GroupBlockTime_BlockTime">
+          <AssociationSet Name="FK_BusSchedule_BlockTime" Association="Self.FK_BusSchedule_BlockTime">
             <End Role="BlockTime" EntitySet="BlockTimes" />
-            <End Role="GroupBlockTime" EntitySet="GroupBlockTimes" />
+            <End Role="BusSchedule" EntitySet="BusSchedules" />
           </AssociationSet>
           <AssociationSet Name="FK_Route_BlockTime" Association="Self.FK_Route_BlockTime">
             <End Role="BlockTime" EntitySet="BlockTimes" />
@@ -843,9 +799,9 @@
             <End Role="BusDetails" EntitySet="BusDetails" />
             <End Role="Bus" EntitySet="Buses" />
           </AssociationSet>
-          <AssociationSet Name="FK_GroupBlockTime_Bus" Association="Self.FK_GroupBlockTime_Bus">
+          <AssociationSet Name="FK_BusSchedule_Bus" Association="Self.FK_BusSchedule_Bus">
             <End Role="Bus" EntitySet="Buses" />
-            <End Role="GroupBlockTime" EntitySet="GroupBlockTimes" />
+            <End Role="BusSchedule" EntitySet="BusSchedules" />
           </AssociationSet>
           <AssociationSet Name="FK_Route_Bus" Association="Self.FK_Route_Bus">
             <End Role="Bus" EntitySet="Buses" />
@@ -874,16 +830,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SRCTravelAgenciesModelStoreContainer" CdmEntityContainer="SRCTravelAgenciesEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SRCTravelAgenciesModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Account">
               <MappingFragment StoreEntitySet="Account">
@@ -905,17 +851,6 @@
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="btPrice" ColumnName="btPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BlockTimes1">
-            <EntityTypeMapping TypeName="SRCTravelAgenciesModel.BlockTime1">
-              <MappingFragment StoreEntitySet="BlockTimes">
-                <ScalarProperty Name="btId" ColumnName="btId" />
-                <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
-                <ScalarProperty Name="Destination" ColumnName="Destination" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -961,6 +896,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BusSchedules">
+            <EntityTypeMapping TypeName="SRCTravelAgenciesModel.BusSchedule">
+              <MappingFragment StoreEntitySet="BusSchedule">
+                <ScalarProperty Name="gbtId" ColumnName="gbtId" />
+                <ScalarProperty Name="btId" ColumnName="btId" />
+                <ScalarProperty Name="bId" ColumnName="bId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Counters">
             <EntityTypeMapping TypeName="SRCTravelAgenciesModel.Counter">
               <MappingFragment StoreEntitySet="Counter">
@@ -992,15 +936,6 @@
                 <ScalarProperty Name="ePhone" ColumnName="ePhone" />
                 <ScalarProperty Name="eCounterId" ColumnName="eCounterId" />
                 <ScalarProperty Name="eRole" ColumnName="eRole" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GroupBlockTimes">
-            <EntityTypeMapping TypeName="SRCTravelAgenciesModel.GroupBlockTime">
-              <MappingFragment StoreEntitySet="GroupBlockTime">
-                <ScalarProperty Name="gbtId" ColumnName="gbtId" />
-                <ScalarProperty Name="btId" ColumnName="btId" />
-                <ScalarProperty Name="bId" ColumnName="bId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -379,6 +379,12 @@ CREATE TABLE [dbo].[Seat](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT INTO [dbo].[Counter] ([counName]) VALUES ('Sai Gon')
+INSERT INTO [dbo].[Counter] ([counName]) VALUES ('Dong Nai')
+INSERT INTO [dbo].[Counter] ([counName]) VALUES ('Vung Tau')
+GO
+
+
 
 ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Booking] FOREIGN KEY([bkId])
 REFERENCES [dbo].[Booking] ([bkId])

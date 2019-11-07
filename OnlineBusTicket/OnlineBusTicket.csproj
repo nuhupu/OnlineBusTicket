@@ -137,68 +137,63 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BlockTime.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlockTime.Context.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BlockTime.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BlockTime.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlockTime.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BlockTime1.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BlockTime2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BlockTime.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BlockTimeData.cs" />
     <Compile Include="Models\Booking.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookingDetail.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Bus.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BusDetail.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusSchedule.cs">
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Counter.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GroupBlockTime.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\Route.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RouteDetail.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seat.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SRCModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SRCModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SRCModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SRCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SRCModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SRCModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>BlockTime.tt</DependentUpon>
+      <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -3837,15 +3832,15 @@
     <Content Include="LoginTemplate\__MACOSX\Login_v1\vendor\select2\._select2.min.css" />
     <Content Include="LoginTemplate\__MACOSX\Login_v1\vendor\select2\._select2.min.js" />
     <Content Include="LoginTemplate\__MACOSX\Login_v1\vendor\tilt\._tilt.jquery.min.js" />
-    <Content Include="Models\BlockTime.Context.tt">
+    <Content Include="Models\SRCModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlockTime.edmx</DependentUpon>
-      <LastGenOutput>BlockTime.Context.cs</LastGenOutput>
+      <DependentUpon>SRCModel.edmx</DependentUpon>
+      <LastGenOutput>SRCModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BlockTime.tt">
+    <Content Include="Models\SRCModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BlockTime.edmx</DependentUpon>
-      <LastGenOutput>BlockTime2.cs</LastGenOutput>
+      <DependentUpon>SRCModel.edmx</DependentUpon>
+      <LastGenOutput>SRCModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -4052,13 +4047,6 @@
     <Content Include="AdminTemplate\scss\_tooltippopovers.scss" />
     <Content Include="AdminTemplate\scss\_variables.scss" />
     <Content Include="AdminTemplate\scss\_waveseffect.scss" />
-    <EntityDeploy Include="Models\BlockTime.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BlockTime.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\BlockTime.edmx.diagram">
-      <DependentUpon>BlockTime.edmx</DependentUpon>
-    </Content>
     <Content Include="ClientTemplate\fonts\customicon\Icons.eot" />
     <Content Include="ClientTemplate\fonts\customicon\Icons.ttf" />
     <Content Include="ClientTemplate\fonts\customicon\Icons.woff" />
@@ -4238,6 +4226,13 @@
     <Content Include="LoginTemplate\__MACOSX\Login_v1\vendor\bootstrap\css\._bootstrap-reboot.min.css.map" />
     <Content Include="LoginTemplate\__MACOSX\Login_v1\vendor\bootstrap\css\._bootstrap.css.map" />
     <Content Include="LoginTemplate\__MACOSX\Login_v1\vendor\bootstrap\css\._bootstrap.min.css.map" />
+    <EntityDeploy Include="Models\SRCModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SRCModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SRCModel.edmx.diagram">
+      <DependentUpon>SRCModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4268,15 +4263,15 @@
     <Content Include="Views\Admin\Route.cshtml" />
     <Content Include="Views\Admin\EditRoute.cshtml" />
     <Content Include="Views\Admin\BlockTime.cshtml" />
-    <Content Include="Views\Admin\AddBlockTime.cshtml" />
+    <Content Include="Views\Admin\testAddBlockTime.cshtml" />
     <Content Include="Views\Admin\EditBlockTime.cshtml" />
-    <Content Include="Views\Admin\GroupBlockTime.cshtml" />
-    <Content Include="Views\Admin\AddGroupBlockTime.cshtml" />
-    <Content Include="Views\Admin\BlockTimeT.cshtml" />
+    <Content Include="Views\Admin\BusSchedule.cshtml" />
+    <Content Include="Views\Admin\AddBusSchedule.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Shared\_ClientLayout.cshtml" />
+    <Content Include="Views\Admin\AddBlockTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

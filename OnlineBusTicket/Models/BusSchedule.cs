@@ -12,12 +12,13 @@ namespace OnlineBusTicket.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BlockTime1
+    public partial class BusSchedule
     {
+        public int gbtId { get; set; }
         public int btId { get; set; }
-        public int StartPlace { get; set; }
-        public int Destination { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public float Price { get; set; }
+        public int bId { get; set; }
+    
+        public virtual BlockTime BlockTime { get; set; }
+        public virtual Bus Bus { get; set; }
     }
 }
