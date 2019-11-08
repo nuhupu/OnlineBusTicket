@@ -7,7 +7,5 @@ using System.ComponentModel.DataAnnotations;
 namespace OnlineBusTicket.Models
 {
     [MetadataType(typeof(tbBlockTimeMetadata))]
-    public partial class BlockTime
-    {
-    }
+    public partial class BlockTime{ }
 }

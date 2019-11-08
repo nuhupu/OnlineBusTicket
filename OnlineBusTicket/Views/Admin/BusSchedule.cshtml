@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<OnlineBusTicket.Models.BusSchedule>
 @{
     ViewBag.Title = "BusSchedule";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -14,14 +14,10 @@
                 </h2>
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="@Url.Action("AddBusSchedule", "Admin")" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">add_box</i>
                         </a>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);">Action</a></li>
-                            <li><a href="javascript:void(0);">Another action</a></li>
-                            <li><a href="javascript:void(0);">Something else here</a></li>
-                        </ul>
+
                     </li>
                 </ul>
             </div>
@@ -51,61 +47,42 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @{
+                                        foreach (var a in ViewBag.CounterName)
+                                        {
+                                            if (Convert.ToInt32(a.Value) == item.StartPlace)
+                                            {
+                                                <td>@a.Text</td>
+                                            }
+                                        }
+                                        foreach (var a in ViewBag.CounterName)
+                                        {
+                                            if (Convert.ToInt32(a.Value) == item.Destination)
+                                            {
+                                                <td>@a.Text</td>
+                                            }
+                                        }
+                                    }
+                                    <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.btPrice)</td>
+
+                                    <td><a href="@Url.Action("Edit", "Admin", new { id = item.btId })"><i class="material-icons">mode_edit</i></a></td>
+                                </tr>
+                            }
 
 
-
-                            <tr>
-                                <td>00001</td>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>6:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-
-                            <tr>
-                                <td>00001</td>
-
-                                <td>Vung Tau</td>
-                                <td>Sai Gon</td>
-                                <td>9:30</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr>
-                                <td>00001</td>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>13:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr>
-                                <td>00001</td>
-                                <td>Vung Tau</td>
-                                <td>Sai Gon</td>
-
-                                <td>16:30</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr>
-                                <td>00002</td>
-                                <td>Sai Gon</td>
-                                <td>Vung Tau</td>
-                                <td>6:00</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
-                            <tr>
-                                <td>00002</td>
-                                <td>Vung Tau</td>
-                                <td>Sai Gon</td>
-
-                                <td>9:30</td>
-                                <td>$10</td>
-                                <td><i class="material-icons">mode_edit</i></td>
-                            </tr>
+                            @*<tr>
+            <td>00001</td>
+            <td>Sai Gon</td>
+            <td>Vung Tau</td>
+            <td>6:00</td>
+            <td>$10</td>
+            <td><i class="material-icons">mode_edit</i></td>
+        </tr>
+*@
                         </tbody>
                     </table>
                 </div>

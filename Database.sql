@@ -383,8 +383,18 @@ INSERT INTO [dbo].[Counter] ([counName]) VALUES ('Sai Gon')
 INSERT INTO [dbo].[Counter] ([counName]) VALUES ('Dong Nai')
 INSERT INTO [dbo].[Counter] ([counName]) VALUES ('Vung Tau')
 GO
-
-
+INSERT INTO [dbo].[BusDetails] ([bdType] ,[bdPrice]) VALUES( 'Express',1)
+INSERT INTO [dbo].[BusDetails] ([bdType] ,[bdPrice]) VALUES( 'Luxury',1.5)
+INSERT INTO [dbo].[BusDetails] ([bdType] ,[bdPrice]) VALUES( 'Volvo non-AC',1.75)
+INSERT INTO [dbo].[BusDetails] ([bdType] ,[bdPrice]) VALUES( 'Volvo AC',2)
+GO
+INSERT INTO [dbo].[Bus] ([bNumber],[bTypeId]) VALUES('00001',1)
+INSERT INTO [dbo].[Bus] ([bNumber],[bTypeId]) VALUES('00002',2)
+INSERT INTO [dbo].[Bus] ([bNumber],[bTypeId]) VALUES('00003',2)
+INSERT INTO [dbo].[Bus] ([bNumber],[bTypeId]) VALUES('00004',3)
+INSERT INTO [dbo].[Bus] ([bNumber],[bTypeId]) VALUES('00005',4)
+INSERT INTO [dbo].[Bus] ([bNumber],[bTypeId]) VALUES('00006',4)
+GO
 
 ALTER TABLE [dbo].[BookingDetails]  WITH CHECK ADD  CONSTRAINT [FK_BookingDetails_Booking] FOREIGN KEY([bkId])
 REFERENCES [dbo].[Booking] ([bkId])
