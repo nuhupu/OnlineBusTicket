@@ -22,9 +22,7 @@ namespace OnlineBusTicket.Models
         public float btPrice;
     }
 
-    public class tbBusScheduleMetadata
-    {
-    }
+    
 
     
 }

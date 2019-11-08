@@ -28,18 +28,17 @@
                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                         <thead>
                             <tr>
+                                <th>Start Time</th>
                                 <th>Start Place</th>
                                 <th>Destination</th>
-                                <th>Start Time</th>
                                 <th>Price</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tfoot>
-                            <tr>
+                            <tr  <th>Start Time</th>
                                 <th>Start Place</th>
-                                <th>Destination</th>
-                                <th>Start Time</th>
+                                <th>Destination</th>                              
                                 <th>Price</th>
                                 <th>Edit</th>
 
@@ -66,9 +65,6 @@
                                         }
                                     }
                                 }
-                                @*<td>@Html.DisplayFor(modelItem => item.StartPlace)</td>
-        <td>@Html.DisplayFor(modelItem => item.Destination)</td>*@
-
                                 <td>@Html.DisplayFor(modelItem => item.btPrice)</td>
 
                                 <td><a href="@Url.Action("Edit", "Admin", new { id = item.btId })"><i class="material-icons">mode_edit</i></a></td>

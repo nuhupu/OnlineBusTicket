@@ -7,5 +7,10 @@ namespace OnlineBusTicket.Models.View
 {
     public class BusScheduleView
     {
+        public int id { set; get; }
+        public Bus bus { set; get; }
+        public Counter counter { get; set; }
+        public BlockTime block { get; set; }
+        public BusDetail busDetail { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineBusTicket.Models.BusSchedule>
+﻿@model IEnumerable<OnlineBusTicket.Models.View.BusScheduleView>
 @{
     ViewBag.Title = "BusSchedule";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -28,9 +28,10 @@
                             <tr>
 
                                 <th>Bus number</th>
+                                <th>Start Time</th>
                                 <th>Start Place</th>
                                 <th>Destination</th>
-                                <th>Start Time</th>
+
                                 <th>Price</th>
                                 <th>Edit</th>
                             </tr>
@@ -38,9 +39,10 @@
                         <tfoot>
                             <tr>
                                 <th>Bus number</th>
+                                <th>Start Time</th>
                                 <th>Start Place</th>
                                 <th>Destination</th>
-                                <th>Start Time</th>
+
                                 <th>Price</th>
                                 <th>Edit</th>
 
@@ -50,30 +52,29 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.bus.bNumber)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.block.StartTime)</td>
                                     @{
                                         foreach (var a in ViewBag.CounterName)
                                         {
-                                            if (Convert.ToInt32(a.Value) == item.StartPlace)
+                                            if (Convert.ToInt32(a.Value) == item.block.StartPlace)
                                             {
                                                 <td>@a.Text</td>
                                             }
                                         }
                                         foreach (var a in ViewBag.CounterName)
                                         {
-                                            if (Convert.ToInt32(a.Value) == item.Destination)
+                                            if (Convert.ToInt32(a.Value) == item.block.Destination)
                                             {
                                                 <td>@a.Text</td>
                                             }
                                         }
                                     }
-                                    <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.btPrice)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.block.btPrice)</td>
 
-                                    <td><a href="@Url.Action("Edit", "Admin", new { id = item.btId })"><i class="material-icons">mode_edit</i></a></td>
+                                    <td><a href="@Url.Action("EditBusSchedule", "Admin", new { id = item.id})"><i class="material-icons">mode_edit</i></a></td>
                                 </tr>
                             }
-
-
                             @*<tr>
             <td>00001</td>
             <td>Sai Gon</td>
@@ -82,7 +83,7 @@
             <td>$10</td>
             <td><i class="material-icons">mode_edit</i></td>
         </tr>
-*@
+                            *@
                         </tbody>
                     </table>
                 </div>
