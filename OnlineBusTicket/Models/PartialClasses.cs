@@ -8,4 +8,7 @@ namespace OnlineBusTicket.Models
 {
     [MetadataType(typeof(tbBlockTimeMetadata))]
     public partial class BlockTime{ }
+
+    [MetadataType(typeof(tbRouteMetadata))]
+    public partial class Route { }
 }

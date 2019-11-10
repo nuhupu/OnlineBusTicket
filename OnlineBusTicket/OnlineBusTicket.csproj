@@ -195,7 +195,6 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>SRCModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\View\UnselectedBlockTimeView.cs" />
     <Compile Include="Models\View\BusScheduleView.cs" />
     <Compile Include="Models\View\RouteView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

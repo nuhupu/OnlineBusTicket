@@ -23,6 +23,11 @@ namespace OnlineBusTicket.Models
     }
 
     
-
+    public class tbRouteMetadata
+    {
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
+        public DateTime date;
+    }
     
 }

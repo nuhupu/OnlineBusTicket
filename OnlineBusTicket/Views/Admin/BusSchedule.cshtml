@@ -15,7 +15,7 @@
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
                         <a href="@Url.Action("AddBusSchedule", "Admin")" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">add_box</i>
+                            Add new schedule
                         </a>
 
                     </li>
@@ -72,7 +72,7 @@
                                     }
                                     <td>@Html.DisplayFor(modelItem => item.block.btPrice)</td>
 
-                                    <td><a href="@Url.Action("EditBusSchedule", "Admin", new { id = item.id})"><i class="material-icons">mode_edit</i></a></td>
+                                    <td><a href="@Url.Action("EditBusSchedule", "Admin", new { id = item.busSchedule.gbtId})"><i class="material-icons">mode_edit</i></a></td>
                                 </tr>
                             }
                             @*<tr>
