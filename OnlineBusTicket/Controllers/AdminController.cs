@@ -2,6 +2,7 @@
 using OnlineBusTicket.Models.View;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -121,6 +122,11 @@ namespace OnlineBusTicket.Controllers
             ViewBag.Bus = new SelectList(db.Buses, "bId", "bNumber");
             ViewBag.BlockTime = new SelectList(db.BlockTimes, "btId", "btId");
             ViewBag.BusSchedule = new SelectList(db.BusSchedules, "btId", "btId");
+            var admin = new AdminController();
+            var buses = GetAllBuses();
+            var blockTimes = GetAllBlockTimes();
+            admin.GetSelectListBuses(buses);
+            admin.GetSelectListBlockTimes(blockTimes);
             return View();
         }
 
@@ -148,14 +154,59 @@ namespace OnlineBusTicket.Controllers
         //    return EventList;
         //}
 
+        private IEnumerable<Bus> GetAllBuses()
+        {
+            var allBus = from a in db.Buses select a;
+            return allBus;
+        }
+
+        private IEnumerable<BlockTime> GetAllBlockTimes()
+        {
+            var allBlockTimes = from a in db.BlockTimes select a;
+            return allBlockTimes;
+        }
+
+        private IEnumerable<SelectListItem> GetSelectListBuses(IEnumerable<Bus> buses)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var item in buses)
+            {
+                selectList.Add(new SelectListItem{
+                    Value = item.bId.ToString(),
+                    Text = item.bNumber
+                });
+            }
+            return selectList;
+        }
+
+        private IEnumerable<SelectListItem> GetSelectListBlockTimes(IEnumerable<BlockTime> blockTimes)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var item in blockTimes)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = item.btId.ToString(),
+                    Text = item.btId.ToString()
+                });
+            }
+            return selectList;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddBusSchedule(BusSchedule busSchedule)
         {
-            ViewBag.Bus = from a in db.Buses
-                          select a;
-            ViewBag.BlockTime = from b in db.BlockTimes
-                                select b;
+           
+            
+            
+            var admin = new AdminController();
+            var buses = GetAllBuses();
+            var blockTimes = GetAllBlockTimes();
+            
+           
+            ViewBag.Bus = admin.GetSelectListBuses(buses); ;
+            ViewBag.BlockTime = admin.GetSelectListBlockTimes(blockTimes); ;
             try
             {
                 if (ModelState.IsValid)
@@ -168,7 +219,7 @@ namespace OnlineBusTicket.Controllers
                         {
                             db.BusSchedules.Add(busSchedule);
                             db.SaveChanges();
-                            return RedirectToAction("BusSchedule", "Admin");
+                            ModelState.AddModelError("", "Bus schedule is added");
                         }
                         else
                         {
