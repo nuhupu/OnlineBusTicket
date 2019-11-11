@@ -259,7 +259,7 @@ namespace OnlineBusTicket.Controllers
         {
             DateTime date = (from Route in db.Routes orderby Route.date descending select Route.date).FirstOrDefault();
             var busId = from busSchedule in db.BusSchedules select busSchedule.bId;          
-            while (date == DateTime.Now.AddDays(60))
+            while (date > DateTime.Now.AddDays(60))
             {
                 foreach (var item in busId)
                 {
