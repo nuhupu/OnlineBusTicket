@@ -26,7 +26,15 @@ namespace OnlineBusTicket.Models
         public int btId { get; set; }
         public double rPrice { get; set; }
         public System.DateTime date { get; set; }
-    
+
+        //public Route(int r,int b,int bt,double p,DateTime d)
+        //{
+        //    this.rId = r;
+        //    this.bId = b;
+        //    this.btId = bt;
+        //    this.rPrice = p;
+        //    this.date = d;
+        //}
         public virtual BlockTime BlockTime { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingDetail> BookingDetails { get; set; }
