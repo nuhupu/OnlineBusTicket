@@ -79,11 +79,12 @@ namespace OnlineBusTicket.Controllers
         {
             ViewBag.CounterName = new SelectList(db.Counters, "counId", "counName");
             var dao = new AdminController();
+            
             var busScheduleList = dao.ListBusSchedule();
             return View(busScheduleList);
 
         }
-
+        //get list BusSchedule
         public IEnumerable<BusScheduleView> ListBusSchedule()
         {
             List<BusScheduleView> busScheduleViews = new List<BusScheduleView>();
@@ -96,7 +97,7 @@ namespace OnlineBusTicket.Controllers
                               b,
                               c,
                           });
-            
+
             BusScheduleView busTimeView;
             foreach (var tem in result)
             {
@@ -120,7 +121,7 @@ namespace OnlineBusTicket.Controllers
         }
 
         private IEnumerable<BlockTime> GetAllBlockTimes()
-        {
+        {            
             var allBlockTimes = from a in db.BlockTimes select a;
             return allBlockTimes;
         }
@@ -141,28 +142,30 @@ namespace OnlineBusTicket.Controllers
 
         private IEnumerable<SelectListItem> GetSelectListBlockTimes(IEnumerable<BlockTime> blockTimes)
         {
-            var selectList = new List<SelectListItem>();
+            var selectList = new List<SelectListItem>();          
+
             foreach (var item in blockTimes)
             {
+                
+                
                 selectList.Add(new SelectListItem
                 {
-                    Value = item.btId.ToString(),
-                    Text = item.btId.ToString()
+                    Value = item.btId.ToString(),                    
+                    Text = "From " + item.Counter1.counName + " to " + item.Counter.counName + " Price " + item.btPrice.ToString()
                 });
             }
             return selectList;
         }
 
         public ActionResult AddBusSchedule()
-        {
-            ViewBag.Bus = new SelectList(db.Buses, "bId", "bNumber");
-            ViewBag.BlockTime = new SelectList(db.BlockTimes, "btId", "btId");
-            ViewBag.BusSchedule = new SelectList(db.BusSchedules, "btId", "btId");
+        {                              
             var admin = new AdminController();
             var buses = GetAllBuses();
             var blockTimes = GetAllBlockTimes();
             admin.GetSelectListBuses(buses);
             admin.GetSelectListBlockTimes(blockTimes);
+            ViewBag.Bus = admin.GetSelectListBuses(buses); ;
+            ViewBag.BlockTime = admin.GetSelectListBlockTimes(blockTimes); ;
             return View();
         }
 
@@ -170,14 +173,9 @@ namespace OnlineBusTicket.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddBusSchedule(BusSchedule busSchedule)
         {
-
-
-
             var admin = new AdminController();
             var buses = GetAllBuses();
             var blockTimes = GetAllBlockTimes();
-
-
             ViewBag.Bus = admin.GetSelectListBuses(buses); ;
             ViewBag.BlockTime = admin.GetSelectListBlockTimes(blockTimes); ;
             try
@@ -256,6 +254,44 @@ namespace OnlineBusTicket.Controllers
 
         }
 
+        public IEnumerable<RouteView> ListRoute(int id)
+        {
+            List<RouteView> routeViews = new List<RouteView>();
+            var result = (from a in db.Routes
+                          join b in db.BlockTimes on a.btId equals b.btId
+                          join c in db.Buses on a.bId equals c.bId
+                          where a.rId == id
+                          //join d in db.BusSchedules on a.btId equals d.btId
+                          select new
+                          {
+                              a,
+                              b,
+                              c,
+                              //d
+                          });
+
+            RouteView routeView;
+            foreach (var tem in result)
+            {
+                routeView = new RouteView();
+                routeView.route = tem.a;
+                routeView.block = tem.b;
+                routeView.bus = tem.c;
+                routeViews.Add(routeView);
+            }
+
+            return routeViews;
+
+        }
+
+        public ActionResult RouteDetails(int id)
+        {
+
+            ViewBag.CounterName = new SelectList(db.Counters, "counId", "counName");
+            var dao = new AdminController();
+            var routeViews = dao.ListRoute(id);
+            return View(routeViews);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -267,9 +303,9 @@ namespace OnlineBusTicket.Controllers
                 if (ModelState.IsValid)
                 {
 
-                    db.Routes.Add(new Route {bId = b,btId = bt, rPrice = p,date = d });
+                    db.Routes.Add(new Route { bId = b, btId = bt, rPrice = p, date = d });
                     db.SaveChanges();
-                    
+
 
                 }
             }
@@ -283,13 +319,47 @@ namespace OnlineBusTicket.Controllers
 
         public ActionResult AutogeneratedRoute()
         {
-            DateTime date = (from Route in db.Routes orderby Route.date descending select Route.date).FirstOrDefault();
+            var lastR = (from Route in db.Routes orderby Route.date descending select Route).FirstOrDefault();
             var busId = (from busSchedule in db.BusSchedules select busSchedule.bId).Distinct();
-            if (date != null)
+            if ( lastR == null)
             {
-                if (date <= DateTime.Now.AddDays(60))
+
+                var date = DateTime.Now;
+                while (date.Date <= DateTime.Now.AddDays(10).Date)
                 {
-                    while (date <= DateTime.Now.AddDays(60))
+
+                    foreach (var item in busId)
+                    {
+
+                        var BlockTimeId = (from bs in db.BusSchedules where bs.bId == item select bs);
+                        foreach (var a in BlockTimeId)
+                        {
+
+                            double p = a.BlockTime.btPrice * a.Bus.BusDetail.bdPrice;
+                            var dao = new AdminController();
+                            var isExist = db.Routes.FirstOrDefault(b => b.bId.Equals(item) && b.btId.Equals(a.btId) && b.rPrice.Equals(p) && b.date.Equals(date));
+                            if (isExist == null)
+                            {
+                                dao.AddRoute(item, a.btId, p, date.Date);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+
+                            ModelState.AddModelError("", "Autogenerated routes successful");
+                        }
+                    }
+                    date = date.AddDays(1);
+                }
+
+            }
+            else
+            {
+                var date = lastR.date;
+                if (date.Date <= DateTime.Now.AddDays(60).Date)
+                {
+                    while (date.Date <= DateTime.Now.AddDays(10).Date)
                     {
 
                         foreach (var item in busId)
@@ -300,14 +370,19 @@ namespace OnlineBusTicket.Controllers
                             {
 
                                 double p = a.BlockTime.btPrice * a.Bus.BusDetail.bdPrice;
-                                //var route = db.Set<Route>();
-                                //db.Routes.Add(new Route { bId = item, btId = a.btId, date = date, rPrice = p });
-                                //db.SaveChanges();
                                 var dao = new AdminController();
-                                dao.AddRoute(item, a.btId, p, date);
+                                var isExist = db.Routes.FirstOrDefault(b => b.bId.Equals(item) && b.btId.Equals(a.btId) && b.rPrice.Equals(p)&&b.date.Equals(date));
+                                if (isExist == null)
+                                {
+                                    dao.AddRoute(item, a.btId, p, date.Date);
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                                
                                 ModelState.AddModelError("", "Autogenerated routes successful");
                             }
-
                         }
                         date = date.AddDays(1);
                     }
@@ -316,45 +391,17 @@ namespace OnlineBusTicket.Controllers
                 {
                     ModelState.AddModelError("", "Routes is added");
                 }
-               
-               
-            }
-         
-            else
-            {
-              
-                date = DateTime.Now;
-                while (date <= DateTime.Now.AddDays(60))
-                {
-                    
-                    foreach (var item in busId)
-                    {
-                       
-                        var BlockTimeId = (from bs in db.BusSchedules where bs.bId == item select bs);
-                        foreach (var a in BlockTimeId)
-                        {
-
-                            double p = a.BlockTime.btPrice * a.Bus.BusDetail.bdPrice;
-                            //var route = db.Set<Route>();
-                            //db.Routes.Add(new Route { bId = item, btId = a.btId, date = date, rPrice = p });
-                            //db.SaveChanges();
-                            var dao = new AdminController();
-                            dao.AddRoute(item, a.btId, p, date);
-                            ModelState.AddModelError("", "Autogenerated routes successful");
-                        }
-                    }
-                    date = date.AddDays(1);
-                }
             }
 
 
-            return Content("<script>alert('It take a minutes!');</script>");
+            return View();
         }
         public ActionResult EditRoute()
         {
             return View();
         }
 
+        
         #endregion Route
     }
 }
