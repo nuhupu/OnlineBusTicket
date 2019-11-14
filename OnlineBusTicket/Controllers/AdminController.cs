@@ -79,7 +79,7 @@ namespace OnlineBusTicket.Controllers
         {
             ViewBag.CounterName = new SelectList(db.Counters, "counId", "counName");
             var dao = new AdminController();
-            
+
             var busScheduleList = dao.ListBusSchedule();
             return View(busScheduleList);
 
@@ -121,7 +121,7 @@ namespace OnlineBusTicket.Controllers
         }
 
         private IEnumerable<BlockTime> GetAllBlockTimes()
-        {            
+        {
             var allBlockTimes = from a in db.BlockTimes select a;
             return allBlockTimes;
         }
@@ -142,15 +142,15 @@ namespace OnlineBusTicket.Controllers
 
         private IEnumerable<SelectListItem> GetSelectListBlockTimes(IEnumerable<BlockTime> blockTimes)
         {
-            var selectList = new List<SelectListItem>();          
+            var selectList = new List<SelectListItem>();
 
             foreach (var item in blockTimes)
             {
-                
-                
+
+
                 selectList.Add(new SelectListItem
                 {
-                    Value = item.btId.ToString(),                    
+                    Value = item.btId.ToString(),
                     Text = "From " + item.Counter1.counName + " to " + item.Counter.counName + " Price " + item.btPrice.ToString()
                 });
             }
@@ -158,7 +158,7 @@ namespace OnlineBusTicket.Controllers
         }
 
         public ActionResult AddBusSchedule()
-        {                              
+        {
             var admin = new AdminController();
             var buses = GetAllBuses();
             var blockTimes = GetAllBlockTimes();
@@ -260,14 +260,16 @@ namespace OnlineBusTicket.Controllers
             var result = (from a in db.Routes
                           join b in db.BlockTimes on a.btId equals b.btId
                           join c in db.Buses on a.bId equals c.bId
+                          join d in db.RouteDetails on a.rId equals d.rId
+                          join e in db.Seats on d.sId equals e.sId
                           where a.rId == id
-                          //join d in db.BusSchedules on a.btId equals d.btId
                           select new
                           {
                               a,
                               b,
                               c,
-                              //d
+                              d,
+                              e
                           });
 
             RouteView routeView;
@@ -277,6 +279,8 @@ namespace OnlineBusTicket.Controllers
                 routeView.route = tem.a;
                 routeView.block = tem.b;
                 routeView.bus = tem.c;
+                routeView.routeDetail = tem.d;
+                routeView.seat = tem.e;
                 routeViews.Add(routeView);
             }
 
@@ -302,8 +306,37 @@ namespace OnlineBusTicket.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var r = new Route { bId = b, btId = bt, rPrice = p, date = d };
+                    db.Routes.Add(r);
+                    db.SaveChanges();
+                    var numberOfSeat = (from a in db.Seats where a.bId == b select a.sId);
+                    foreach (var item in numberOfSeat)
+                    {
+                        AddRouteDetails(r.rId, item);
+                    }
 
-                    db.Routes.Add(new Route { bId = b, btId = bt, rPrice = p, date = d });
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRouteDetails(int r, int s)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    db.RouteDetails.Add(new RouteDetail { rId = r, sId = s,avaibility = 1 });
                     db.SaveChanges();
 
 
@@ -321,7 +354,7 @@ namespace OnlineBusTicket.Controllers
         {
             var lastR = (from Route in db.Routes orderby Route.date descending select Route).FirstOrDefault();
             var busId = (from busSchedule in db.BusSchedules select busSchedule.bId).Distinct();
-            if ( lastR == null)
+            if (lastR == null)
             {
 
                 var date = DateTime.Now;
@@ -371,7 +404,7 @@ namespace OnlineBusTicket.Controllers
 
                                 double p = a.BlockTime.btPrice * a.Bus.BusDetail.bdPrice;
                                 var dao = new AdminController();
-                                var isExist = db.Routes.FirstOrDefault(b => b.bId.Equals(item) && b.btId.Equals(a.btId) && b.rPrice.Equals(p)&&b.date.Equals(date));
+                                var isExist = db.Routes.FirstOrDefault(b => b.bId.Equals(item) && b.btId.Equals(a.btId) && b.rPrice.Equals(p) && b.date.Equals(date));
                                 if (isExist == null)
                                 {
                                     dao.AddRoute(item, a.btId, p, date.Date);
@@ -380,7 +413,7 @@ namespace OnlineBusTicket.Controllers
                                 {
                                     continue;
                                 }
-                                
+
                                 ModelState.AddModelError("", "Autogenerated routes successful");
                             }
                         }
@@ -401,7 +434,7 @@ namespace OnlineBusTicket.Controllers
             return View();
         }
 
-        
+
         #endregion Route
     }
 }

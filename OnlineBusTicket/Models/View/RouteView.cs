@@ -12,5 +12,7 @@ namespace OnlineBusTicket.Models.View
         public Counter counter { get; set; }
         public BlockTime block { get; set; }
         public BusDetail busDetail { get; set; }
+        public RouteDetail routeDetail { get; set; }
+        public Seat seat { get; set; }
     }
 }
