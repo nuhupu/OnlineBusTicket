@@ -309,11 +309,11 @@ namespace OnlineBusTicket.Controllers
                     var r = new Route { bId = b, btId = bt, rPrice = p, date = d };
                     db.Routes.Add(r);
                     db.SaveChanges();
-                    var numberOfSeat = (from a in db.Seats where a.bId == b select a.sId);
-                    foreach (var item in numberOfSeat)
-                    {
-                        AddRouteDetails(r.rId, item);
-                    }
+                    //var numberOfSeat = (from a in db.Seats where a.bId == b select a.sId);
+                    //foreach (var item in numberOfSeat)
+                    //{
+                    //    AddRouteDetails(r.rId, item);
+                    //}
 
 
                 }
