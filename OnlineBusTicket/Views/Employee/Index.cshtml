@@ -1,0 +1,119 @@
+﻿@model IEnumerable<OnlineBusTicket.Models.View.EmployeeView>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Exportable Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h1 style="color: red; font-weight:bold">
+                    EMPLOYEE MANAGEMENT
+                </h1>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="@Url.Action("Create", "Employee")" role="button" aria-haspopup="true" aria-expanded="false">
+                            Add new account
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Birthday</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Counter</th>
+
+                                <th colspan="2" style="text-align: center">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Birthday</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Counter</th>
+
+                                <th colspan="2" style="text-align: center">Action</th>
+
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eUsername)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eBirthday)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eAddress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eEmail)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.ePhone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employee.eRole)
+                                    </td>
+
+
+                                    @{
+                                        foreach (var a in ViewBag.CounterList)
+                                        {
+                                            if (Convert.ToInt32(a.Value) == item.employee.eCounterId)
+                                            {
+                                                <td>@a.Text</td>
+
+                                            }
+                                        }
+                                    }
+
+
+                                    <td>
+                                        <a href="@Url.Action("Edit", "Employee", new { id = item.employee.eId})"><i class="material-icons">mode_edit</i> Edit</a>
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Deactive", "Employee", new { id = item.employee.eId})"><i class="material-icons">cancel_presentation</i> Deactive</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Exportable Table -->

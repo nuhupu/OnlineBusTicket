@@ -11,4 +11,12 @@ namespace OnlineBusTicket.Models
 
     [MetadataType(typeof(tbRouteMetadata))]
     public partial class Route { }
+    [MetadataType(typeof(tbEmployeeMetadata))]
+    public partial class Employee { }
+
+    [MetadataType(typeof(tbAccountMetadata))]
+    public partial class Account { }
+
+    [MetadataType(typeof(tbCustomerMetadata))]
+    public partial class Customer { }
 }
