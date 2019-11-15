@@ -1,15 +1,15 @@
-﻿
+﻿@model OnlineBusTicket.Models.Account
+
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <title>Login SRC Travel Agencies</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
+    <meta name="viewport" content="width=device-width" />
+    <title>Register2</title>
     <link rel="icon" type="image/png" href="~/LoginTemplate/Login/images/icons/logobus.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/LoginTemplate/Login/vendor/bootstrap/css/bootstrap.min.css">
@@ -24,100 +24,81 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/LoginTemplate/Login/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/LoginTemplate/Login/css/main.css">
-    <!--===============================================================================================-->
 </head>
 <body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                    <img src="~/LoginTemplate/Login/images/2_mercedes_bus.jpg" alt="IMG">
+        <div class="form-horizontal">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div class="login100-pic js-tilt" data-tilt>
+                        <img src="~/LoginTemplate/Login/images/2_mercedes_bus.jpg" alt="IMG">
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aUsername, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aUsername, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aUsername, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aBirthday, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aBirthday, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aBirthday, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
                 </div>
 
-                <form class="login100-form validate-form">
-                    <span class="login100-form-title">
-                        Create your Register
-                    </span>
-
-                    <div class="wrap-input100 validate-input" data-validate="Username is required">
-                        <input class="input100" type="text" name="username" placeholder="Username">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="The password is not the same">
-                        <input class="input100" type="password" name="pass" placeholder="Enter the password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Name is not empty">
-                        <input class="input100" type="text" name="name" placeholder="Enter the name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Birthday is not empty">
-                        <input class="input100" type="date" name="birthday" placeholder="Enter the Birthday">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Phone is not empty">
-                        <input class="input100" type="tel" name="phone" placeholder="Enter the Phone">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-                            <i class="fa fa-phone-square" aria-hidden="true"></i>
-                        </span>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
-                            Register
-                        </button>
-                    </div>
-
-                    <div class="text-center p-t-12">
-                        <span class="txt1">
-                            Forgot
-                        </span>
-                        <a class="txt2" href="#">
-                            Username / Password?
-                        </a>
-                    </div>
-
-                </form>
             </div>
         </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-
-
-
 
     <!--===============================================================================================-->
     <script src="~/LoginTemplate/Login/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -129,9 +110,9 @@
     <!--===============================================================================================-->
     <script src="~/LoginTemplate/Login/vendor/tilt/tilt.jquery.min.js"></script>
     <script>
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
     </script>
     <!--===============================================================================================-->
     <script src="~/LoginTemplate/Login/js/main.js"></script>

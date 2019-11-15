@@ -1,463 +1,422 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
 }
 
 
 
-    <section class="content">
-        <section id="intro">
-            <div class="intro-content">
-                <h2>Welcome to  SRC Travel Agencies !</h2>
-                <h3>Contribute to your journey more happily</h3>
-                <div>
-                    <a href="#content" class="btn-get-started scrollto">Get Started</a>
-                </div>
+<section class="content">
+    <section id="intro">
+        <div class="intro-content">
+            <h2>Welcome to  SRC Travel Agencies !</h2>
+            <h3>Contribute to your journey more happily</h3>
+            <div>
+                <a href="#content" class="btn-get-started scrollto">Get Started</a>
             </div>
-        </section>
-        <!-- /section intro -->
-
-        <section id="content">
-            <div class="container">
-
-                <div class="row">
-                    <div class="span12">
-                        <div class="row">
-                            <div class="span3">
-                                <div class="box aligncenter">
-                                    <div class="icon">
-                                        <span class="badge badge-info badge-circled">1</span>
-                                        <i class="ico icon-money icon-5x"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h4><strong>Good Price</strong></h4>
-                                        <p>
-                                            Our SRC travel agency is priced to suit every customer's needs.
-                                        </p>
-                                        <a href="#">Learn More</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="span3">
-                                <div class="box aligncenter">
-                                    <div class="icon">
-                                        <span class="badge badge-success badge-circled">2</span>
-                                        <i class="ico icon-trophy icon-5x"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h4><strong>Good Quality</strong></h4>
-                                        <p>
-                                            SRC Travel Agencies meet the international quality requirements, and are highly appreciated by customers.
-                                        </p>
-                                        <a href="#">Learn More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="span3">
-                                <div class="box aligncenter">
-                                    <div class="icon">
-                                        <span class="badge badge-warning badge-circled">3</span>
-                                        <i class="ico icon-rocket icon-5x"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h4><strong>Good Speed</strong></h4>
-                                        <p>
-                                            SRC Travel Agencies has the speed of moving according to high accuracy standards, punctuality and fixed.
-                                        </p>
-                                        <a href="#">Learn More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="span3">
-                                <div class="box aligncenter">
-                                    <div class="icon">
-                                        <span class="badge badge-important badge-circled">4</span>
-                                        <i class="ico icon-heart icon-5x"></i>
-                                    </div>
-                                    <div class="text">
-                                        <h4><strong>Good Safety</strong></h4>
-                                        <p>
-                                            SRC Travel Agencies places the needs of customers at the highest level possible, and ensuring customer safety.
-                                        </p>
-                                        <a href="#">Learn More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="span12">
-                        <div class="cta-box">
-                            <div class="row">
-                                <div class="span8">
-                                    <div class="cta-text">
-                                        <i class="icon-map-marker icon-2x"></i>
-                                        <input list="location" placeholder="Place to go ..." />
-                                        <datalist id="location">
-                                            <option>Tp Hồ Chí Minh</option>
-                                            <option>Đồng Nai</option>
-                                            <option>Vũng Tàu</option>
-                                        </datalist>
-
-                                        <i class="icon-map-marker icon-2x"></i>
-                                        <input list="location2" placeholder="Destination ..." />
-                                        <datalist id="location2">
-                                            <option>Tp Hồ Chí Minh</option>
-                                            <option>Đồng Nai</option>
-                                            <option>Vũng Tàu</option>
-                                        </datalist>
-                                        <i class="icon-calendar"></i>
-                                        <input type="text" id="datepicker" placeholder="Enter the date of your bus trip ...">
-
-
-                                    </div>
-                                </div>
-                                <div class="span4">
-                                    <div class="cta-btn">
-                                        <a href="@Url.Action("Index","Login")" class="btn btn-color">Find tickets <i class="icon-caret-right"></i></a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="offer">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <div class="row">
-                            <div class="span12">
-                                <div class="aligncenter">
-                                    <h3>Our features and pricing</h3>
-                                    <blockquote>
-                                        Our SRC Travel Agencies reach 4 good standards promising to bring customers great experiences.
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="span3">
-                                <h5>Choose package and start</h5>
-                                <p>
-                                    Choose and experience your trip.
-                                </p>
-                            </div>
-
-                            <div class="span3">
-                                <div class="pricing-box-plain abc">
-                                    <div class="heading">
-                                        <h4>Express </h4>
-                                        <span>VND 70,000 / trip</span>
-                                    </div>
-                                    <div class="desc">
-                                        <ul>
-                                            <li>Stop each station</li>
-                                            <li>No Wi-Fi</li>
-                                            <li>Equipped with air conditioning</li>
-                                        </ul>
-                                    </div>
-                                    <div class="action">
-                                        <a href="#" class="btn btn-inverse">Sign Up</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="span3">
-                                <div class="pricing-box-plain abc">
-                                    <div class="heading">
-                                        <h4>Luxury </h4>
-                                        <span>VND 200,000 / trip</span>
-                                    </div>
-                                    <div class="desc">
-                                        <ul>
-                                            <li>Go straight</li>
-                                            <li>free wi-fi</li>
-                                            <li>Equipped with air conditioning</li>
-                                            <li>Support fast food and drinks</li>
-                                        </ul>
-                                    </div>
-                                    <div class="action">
-                                        <a href="#" class="btn btn-inverse">Sign Up</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="span3">
-                                <div class="pricing-box-plain abc">
-                                    <div class="heading">
-                                        <h4>Volvo </h4>
-                                        <span>VND 300,000 / trip</span>
-                                    </div>
-                                    <div class="desc">
-                                        <ul>
-                                            <li>Go straight</li>
-                                            <li>free wi-fi</li>
-                                            <li>Equipped with air conditioning</li>
-                                            <li>Support fast food and drinks</li>
-                                            <li>Massage chairs</li>
-                                            <li>Each location has its own compartment</li>
-                                        </ul>
-                                    </div>
-                                    <div class="action">
-                                        <a href="#" class="btn btn-color">Sign Up</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="container">
-                <div class="row">
-
-                    <div class="span6">
-                        <h4>
-                            About SRC Travel Agencies
-                        </h4>
-                        <p>
-                            SRC Travel Agencies is the online bus booking website that offers  sightseeing bus, expressway bus from Ho Chi Minh City to City Vung Tau.
-                            Moreover, registered bus companies on SRC Travel Agencies are all authorized by the Ministry of Land, Infrastructure, Transport and Tourism, offering the highest level of comfort and safety.
-                        </p>
-                        <p>
-                            Our company, Team4 launched the Vietnamese website SRC Travel Agencies which offers online bus booking service in 2016. Our registered bus companies are more than 120 ,and we provide multiple bus routes for customers, which makes us the biggest online bus booking website in VietNam.
-                            The number of customers who registered with SRC Travel Agencies has reached more than 4,000,000.
-                        </p>
-                        <p>
-                            The number of foreigners who visit VietNam has been increasing, and approximately 18,000,000 foreigners visited City Ho Chi Minh and City Vung Tau in 2015 according to VietNam National Tourism Organization. We have set up an online bus booking website in English ,"SRC Travel Agencies" in 2015 ,hoping you can travel to your destination at ease with no hassle.
-                            We are pleased to offer you a great travel experience and satisfaction at reasonable prices.
-                            We hope that we can be of your help to make your journey more comfortable.
-                        </p>
-
-                    </div>
-
-                    <div class="span6">
-                        <iframe width="500" height="500" src="https://www.youtube.com/embed/lTkz-PCKmgE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                        </iframe>
-                        <!--<iframe src="http://player.vimeo.com/video/24535181?title=0&amp;byline=0" width="500" height="500" seamless></iframe>-->
-                    </div>
-                </div>
-
-                <!-- divider -->
-                <div class="row">
-                    <div class="span12">
-                        <div class="solidline"></div>
-                    </div>
-                </div>
-                <!-- end divider -->
-
-                <div class="row team">
-                    <div class="span12">
-                        <h4>Nice persons behind Remember</h4>
-                    </div>
-
-                    <div class="span3">
-                        <div class="team-box">
-                            <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team1.jpg" alt="" /></a>
-                            <div class="roles aligncenter">
-                                <p class="lead"><strong>Mr Phuc</strong></p>
-                                <p>
-                                    CEO - Founder
-                                </p>
-                                <p>
-                                    <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="span3">
-                        <div class="team-box">
-                            <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team2.jpg" alt="" /></a>
-                            <div class="roles aligncenter">
-                                <p class="lead"><strong>Mr Giang</strong></p>
-                                <p>
-                                    Lead designer
-                                </p>
-                                <p>
-                                    <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="span3">
-                        <div class="team-box">
-                            <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team3.jpg" alt="" /></a>
-                            <div class="roles aligncenter">
-                                <p class="lead"><strong>Mrs Nguyen</strong></p>
-                                <p>
-                                    Customer support
-                                </p>
-                                <p>
-                                    <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="span3">
-                        <div class="team-box">
-                            <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team4.jpg" alt="" /></a>
-                            <div class="roles aligncenter">
-                                <p class="lead"><strong>Mr Tung</strong></p>
-                                <p>
-                                    Strategic advertiser
-                                </p>
-                                <p>
-                                    <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
-                                    <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="works">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <h3>Our Bus</h3>
-                        <div class="row">
-
-                            <div class="grid cs-style-3">
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="~/ClientTemplate/img\Ngoại Thất\BUSbinhdan.jpg" alt=""></div>
-                                            <figcaption>
-                                                <h3>Interior of the bus and details</h3>
-                                                <p>
-                                                    <a href="~/ClientTemplateimg\Nội thất\bus bình dân.jpg" data-pretty="prettyPhoto[gallery1]" title="See Details"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="~/ClientTemplate/img\Ngoại Thất\ảnh ngoài xe bus.jpg" alt=""></div>
-                                            <figcaption>
-                                                <h3>Interior of the bus and details</h3>
-                                                <p>
-                                                    <a href="~/ClientTemplate/img\Nội thất\Bus luxury.jpg" data-pretty="prettyPhoto[gallery1]" title="See Details"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="~/ClientTemplate/img\Ngoại Thất\BUSVIP.jpg" alt=""></div>
-                                            <figcaption>
-                                                <h3>Interior of the bus and detailss</h3>
-                                                <p>
-                                                    <a href="~/ClientTemplate/img\Nội thất\Bussangchanh.jpg" data-pretty="prettyPhoto[gallery1]" title="See Details"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.5025656627313!2d106.66413881474901!3d10.786346192314811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed23ca5d8db%3A0x24d414f45e5a523!2zNTkwIEPDoWNoIE3huqFuZyBUaMOhbmcgVMOhbSwgUGjGsOG7nW5nIDExLCBRdeG6rW4gMywgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e1!3m2!1svi!2s!4v1572541648111!5m2!1svi!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-
-            <div class="container">
-                <div class="row">
-                    <div class="span8">
-                        <h4>Get in touch with us by filling contact form below</h4>
-
-
-
-                        <form id="contactform" action="" method="post" role="form" class="contactForm">
-
-                            <div id="sendmessage">Your message has been sent. Thank you!</div>
-                            <div id="errormessage"></div>
-
-                            <div class="row">
-                                <div class="span4 field form-group">
-                                    <input type="text" name="name" placeholder="* Enter your full name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validation"></div>
-                                </div>
-                                <div class="span4 field form-group">
-                                    <input type="text" name="email" placeholder="* Enter your email address" data-rule="email" data-msg="Please enter a valid email" />
-                                    <div class="validation"></div>
-                                </div>
-                                <div class="span8 margintop10 field form-group">
-                                    <input type="text" name="subject" placeholder="Enter your subject" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validation"></div>
-                                </div>
-                                <div class="span8 margintop10 field form-group">
-                                    <textarea rows="12" name="message" class="input-block-level" placeholder="* Your message here..." data-rule="required" data-msg="Please write something"></textarea>
-                                    <div class="validation"></div>
-
-                                    <p>
-                                        <button class="btn btn-color margintop10 pull-left" type="submit">Send message</button>
-                                        <span class="pull-right margintop20">* Please fill all required form field, thanks!</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="span4">
-                        <div class="clearfix"></div>
-                        <aside class="right-sidebar">
-
-                            <div class="widget">
-                                <h5 class="widgetheading">Contact information<span></span></h5>
-
-                                <ul class="contact-info">
-                                    <li>
-                                        <label>Address :</label> 590 Cach Mang Thang 8, Ward 11, District 3, Ho Chi Minh<br /> VietNam
-                                    </li>
-                                    <li><label>Phone :</label>+(84) 522-940-812 / +(84) 397-027-230</li>
-                                    <li><label>Fax : </label>+62 123 456 10 / +62 123 456 11</li>
-                                    <li><label>Email : </label> Team4@Gmail.com</li>
-                                </ul>
-
-                            </div>
-                        </aside>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </section>
-       
-        
+    <!-- /section intro -->
+
+    <section id="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="span12">
+                    <div class="row">
+                        <div class="span3">
+                            <div class="box aligncenter">
+                                <div class="icon">
+                                    <span class="badge badge-info badge-circled">1</span>
+                                    <i class="ico icon-money icon-5x"></i>
+                                </div>
+                                <div class="text">
+                                    <h4><strong>Good Price</strong></h4>
+                                    <p>
+                                        Our SRC travel agency is priced to suit every customer's needs.
+                                    </p>
+                                    <a href="#">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3">
+                            <div class="box aligncenter">
+                                <div class="icon">
+                                    <span class="badge badge-success badge-circled">2</span>
+                                    <i class="ico icon-trophy icon-5x"></i>
+                                </div>
+                                <div class="text">
+                                    <h4><strong>Good Quality</strong></h4>
+                                    <p>
+                                        SRC Travel Agencies meet the international quality requirements, and are highly appreciated by customers.
+                                    </p>
+                                    <a href="#">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="box aligncenter">
+                                <div class="icon">
+                                    <span class="badge badge-warning badge-circled">3</span>
+                                    <i class="ico icon-rocket icon-5x"></i>
+                                </div>
+                                <div class="text">
+                                    <h4><strong>Good Speed</strong></h4>
+                                    <p>
+                                        SRC Travel Agencies has the speed of moving according to high accuracy standards, punctuality and fixed.
+                                    </p>
+                                    <a href="#">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="box aligncenter">
+                                <div class="icon">
+                                    <span class="badge badge-important badge-circled">4</span>
+                                    <i class="ico icon-heart icon-5x"></i>
+                                </div>
+                                <div class="text">
+                                    <h4><strong>Good Safety</strong></h4>
+                                    <p>
+                                        SRC Travel Agencies places the needs of customers at the highest level possible, and ensuring customer safety.
+                                    </p>
+                                    <a href="#">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                
+
+        </div>
+    </section>
+
+    <section id="offer">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="row">
+                        <div class="span12">
+                            <div class="aligncenter">
+                                <h3>Our features and pricing</h3>
+                                <blockquote>
+                                    Our SRC Travel Agencies reach 4 good standards promising to bring customers great experiences.
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="span3">
+                            <h5>Choose package and start</h5>
+                            <p>
+                                Choose and experience your trip.
+                            </p>
+                        </div>
+
+                        <div class="span3">
+                            <div class="pricing-box-plain abc">
+                                <div class="heading">
+                                    <h4>Express </h4>
+                                    <span>VND 70,000 / trip</span>
+                                </div>
+                                <div class="desc">
+                                    <ul>
+                                        <li>Stop each station</li>
+                                        <li>No Wi-Fi</li>
+                                        <li>Equipped with air conditioning</li>
+                                    </ul>
+                                </div>
+                                <div class="action">
+                                    <a href="#" class="btn btn-inverse">Sign Up</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3">
+                            <div class="pricing-box-plain abc">
+                                <div class="heading">
+                                    <h4>Luxury </h4>
+                                    <span>VND 200,000 / trip</span>
+                                </div>
+                                <div class="desc">
+                                    <ul>
+                                        <li>Go straight</li>
+                                        <li>free wi-fi</li>
+                                        <li>Equipped with air conditioning</li>
+                                        <li>Support fast food and drinks</li>
+                                    </ul>
+                                </div>
+                                <div class="action">
+                                    <a href="#" class="btn btn-inverse">Sign Up</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3">
+                            <div class="pricing-box-plain abc">
+                                <div class="heading">
+                                    <h4>Volvo </h4>
+                                    <span>VND 300,000 / trip</span>
+                                </div>
+                                <div class="desc">
+                                    <ul>
+                                        <li>Go straight</li>
+                                        <li>free wi-fi</li>
+                                        <li>Equipped with air conditioning</li>
+                                        <li>Support fast food and drinks</li>
+                                        <li>Massage chairs</li>
+                                        <li>Each location has its own compartment</li>
+                                    </ul>
+                                </div>
+                                <div class="action">
+                                    <a href="#" class="btn btn-color">Sign Up</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="row">
+
+                <div class="span6">
+                    <h4>
+                        About SRC Travel Agencies
+                    </h4>
+                    <p>
+                        SRC Travel Agencies is the online bus booking website that offers  sightseeing bus, expressway bus from Ho Chi Minh City to City Vung Tau.
+                        Moreover, registered bus companies on SRC Travel Agencies are all authorized by the Ministry of Land, Infrastructure, Transport and Tourism, offering the highest level of comfort and safety.
+                    </p>
+                    <p>
+                        Our company, Team4 launched the Vietnamese website SRC Travel Agencies which offers online bus booking service in 2016. Our registered bus companies are more than 120 ,and we provide multiple bus routes for customers, which makes us the biggest online bus booking website in VietNam.
+                        The number of customers who registered with SRC Travel Agencies has reached more than 4,000,000.
+                    </p>
+                    <p>
+                        The number of foreigners who visit VietNam has been increasing, and approximately 18,000,000 foreigners visited City Ho Chi Minh and City Vung Tau in 2015 according to VietNam National Tourism Organization. We have set up an online bus booking website in English ,"SRC Travel Agencies" in 2015 ,hoping you can travel to your destination at ease with no hassle.
+                        We are pleased to offer you a great travel experience and satisfaction at reasonable prices.
+                        We hope that we can be of your help to make your journey more comfortable.
+                    </p>
+
+                </div>
+
+                <div class="span6">
+                    <iframe width="500" height="500" src="https://www.youtube.com/embed/lTkz-PCKmgE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                    <!--<iframe src="http://player.vimeo.com/video/24535181?title=0&amp;byline=0" width="500" height="500" seamless></iframe>-->
+                </div>
+            </div>
+
+            <!-- divider -->
+            <div class="row">
+                <div class="span12">
+                    <div class="solidline"></div>
+                </div>
+            </div>
+            <!-- end divider -->
+
+            <div class="row team">
+                <div class="span12">
+                    <h4>Nice persons behind Remember</h4>
+                </div>
+
+                <div class="span3">
+                    <div class="team-box">
+                        <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team1.jpg" alt="" /></a>
+                        <div class="roles aligncenter">
+                            <p class="lead"><strong>Mr Phuc</strong></p>
+                            <p>
+                                CEO - Founder
+                            </p>
+                            <p>
+                                <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="team-box">
+                        <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team2.jpg" alt="" /></a>
+                        <div class="roles aligncenter">
+                            <p class="lead"><strong>Mr Giang</strong></p>
+                            <p>
+                                Lead designer
+                            </p>
+                            <p>
+                                <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="team-box">
+                        <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team3.jpg" alt="" /></a>
+                        <div class="roles aligncenter">
+                            <p class="lead"><strong>Mrs Nguyen</strong></p>
+                            <p>
+                                Customer support
+                            </p>
+                            <p>
+                                <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="team-box">
+                        <a href="#" class="thumbnail"><img src="~/ClientTemplate/img/dummies/team4.jpg" alt="" /></a>
+                        <div class="roles aligncenter">
+                            <p class="lead"><strong>Mr Tung</strong></p>
+                            <p>
+                                Strategic advertiser
+                            </p>
+                            <p>
+                                <a href="#"><i class="icon-facebook icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-twitter icon-circled icon-bglight active"></i></a>
+                                <a href="#"><i class="icon-linkedin icon-circled icon-bglight active"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h3>Our Bus</h3>
+                    <div class="row">
+
+                        <div class="grid cs-style-3">
+                            <div class="span3">
+                                <div class="item">
+                                    <figure>
+                                        <div><img src="~/ClientTemplate/img\Ngoại Thất\BUSbinhdan.jpg" alt=""></div>
+                                        <figcaption>
+                                            <h3>Interior of the bus and details</h3>
+                                            <p>
+                                                <a href="~/ClientTemplateimg\Nội thất\bus bình dân.jpg" data-pretty="prettyPhoto[gallery1]" title="See Details"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
+                                                <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="item">
+                                    <figure>
+                                        <div><img src="~/ClientTemplate/img\Ngoại Thất\ảnh ngoài xe bus.jpg" alt=""></div>
+                                        <figcaption>
+                                            <h3>Interior of the bus and details</h3>
+                                            <p>
+                                                <a href="~/ClientTemplate/img\Nội thất\Bus luxury.jpg" data-pretty="prettyPhoto[gallery1]" title="See Details"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
+                                                <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="item">
+                                    <figure>
+                                        <div><img src="~/ClientTemplate/img\Ngoại Thất\BUSVIP.jpg" alt=""></div>
+                                        <figcaption>
+                                            <h3>Interior of the bus and detailss</h3>
+                                            <p>
+                                                <a href="~/ClientTemplate/img\Nội thất\Bussangchanh.jpg" data-pretty="prettyPhoto[gallery1]" title="See Details"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
+                                                <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.5025656627313!2d106.66413881474901!3d10.786346192314811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed23ca5d8db%3A0x24d414f45e5a523!2zNTkwIEPDoWNoIE3huqFuZyBUaMOhbmcgVMOhbSwgUGjGsOG7nW5nIDExLCBRdeG6rW4gMywgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e1!3m2!1svi!2s!4v1572541648111!5m2!1svi!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+        <div class="container">
+            <div class="row">
+                <div class="span8">
+                    <h4>Get in touch with us by filling contact form below</h4>
+
+
+
+                    <form id="contactform" action="" method="post" role="form" class="contactForm">
+
+                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                        <div id="errormessage"></div>
+
+                        <div class="row">
+                            <div class="span4 field form-group">
+                                <input type="text" name="name" placeholder="* Enter your full name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span4 field form-group">
+                                <input type="text" name="email" placeholder="* Enter your email address" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span8 margintop10 field form-group">
+                                <input type="text" name="subject" placeholder="Enter your subject" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="span8 margintop10 field form-group">
+                                <textarea rows="12" name="message" class="input-block-level" placeholder="* Your message here..." data-rule="required" data-msg="Please write something"></textarea>
+                                <div class="validation"></div>
+
+                                <p>
+                                    <button class="btn btn-color margintop10 pull-left" type="submit">Send message</button>
+                                    <span class="pull-right margintop20">* Please fill all required form field, thanks!</span>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="span4">
+                    <div class="clearfix"></div>
+                    <aside class="right-sidebar">
+
+                        <div class="widget">
+                            <h5 class="widgetheading">Contact information<span></span></h5>
+
+                            <ul class="contact-info">
+                                <li>
+                                    <label>Address :</label> 590 Cach Mang Thang 8, Ward 11, District 3, Ho Chi Minh<br /> VietNam
+                                </li>
+                                <li><label>Phone :</label>+(84) 522-940-812 / +(84) 397-027-230</li>
+                                <li><label>Fax : </label>+62 123 456 10 / +62 123 456 11</li>
+                                <li><label>Email : </label> Team4@Gmail.com</li>
+                            </ul>
+
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+

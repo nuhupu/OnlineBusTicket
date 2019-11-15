@@ -1,0 +1,80 @@
+﻿@model IEnumerable<OnlineBusTicket.Models.View.RouteView>
+
+@{
+    ViewBag.Title = "Route";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+<section id="content" style="margin-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h3>Route Management</h3>
+                <div class="row">
+                    <div class="span12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Bus Number</th>
+                                        <th>Desparture Time</th>
+                                        <th>Pick up</th>
+                                        <th>Drop off</th>
+                                        <th>Date</th>
+                                        <th>Price</th>
+                                        <th>Ticket Booking</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Bus Number</th>
+                                        <th>Desparture Time</th>
+                                        <th>Pick up</th>
+                                        <th>Drop off</th>
+                                        <th>Date</th>
+                                        <th>Price</th>
+                                        <th>Ticket Booking</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.bus.bNumber)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.block.StartTime)</td>
+                                            @{
+                                                foreach (var a in ViewBag.CounterName)
+                                                {
+                                                    if (Convert.ToInt32(a.Value) == item.block.StartPlace)
+                                                    {
+                                                        <td>@a.Text</td>
+                                                    }
+                                                    if (Convert.ToInt32(a.Value) == item.block.Destination)
+                                                    {
+                                                        <td>@a.Text</td>
+                                                    }
+                                                }
+
+                                            }
+                                            <td>@Html.DisplayFor(modelItem => item.route.date)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.route.rPrice)</td>
+
+
+                                            <td><a href="@Url.Action("Booking", "Client", new { id = item.route.rId})">Select</a></td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
