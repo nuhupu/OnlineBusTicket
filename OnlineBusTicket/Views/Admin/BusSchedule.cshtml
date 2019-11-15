@@ -33,7 +33,7 @@
                                 <th>Destination</th>
 
                                 <th>Price</th>
-                                <th>Edit</th>
+                                @*<th>Edit</th>*@
                             </tr>
                         </thead>
                         <tfoot>
@@ -44,7 +44,7 @@
                                 <th>Destination</th>
 
                                 <th>Price</th>
-                                <th>Edit</th>
+                                @*<th>Edit</th>*@
 
                             </tr>
                         </tfoot>
@@ -72,7 +72,7 @@
                                     }
                                     <td>@Html.DisplayFor(modelItem => item.block.btPrice)</td>
 
-                                    <td><a href="@Url.Action("EditBusSchedule", "Admin", new { id = item.busSchedule.gbtId})"><i class="material-icons">mode_edit</i></a></td>
+                                    @*<td><a href="@Url.Action("EditBusSchedule", "Admin", new { id = item.busSchedule.gbtId})"><i class="material-icons">mode_edit</i></a></td>*@
                                 </tr>
                             }
                             @*<tr>

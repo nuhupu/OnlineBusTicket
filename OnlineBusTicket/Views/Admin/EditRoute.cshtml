@@ -1,62 +1,62 @@
-﻿
+﻿@model OnlineBusTicket.Models.Route
+
 @{
     ViewBag.Title = "EditRoute";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<h2>EditRoute</h2>
 
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">  
-            <div class="body">
-                <h2>Edit Route</h2>
-                <div class="row clearfix">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Route</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.rId)
 
-                        <b>Bus Type</b>
-                        <div class="form-group form-group-lg">
-                            <div class="form-line">
-                                <input type="text" class="form-control" value="Volvo" />
-                            </div>
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.bId, "Bus number", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("bId", (IEnumerable<SelectListItem>)ViewBag.Bus, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.bId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                        <b>Departure Time</b>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">access_time</i>
-                            </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control time24" value="7:30">
-                            </div>
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.btId, "Route", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("btId", (IEnumerable<SelectListItem>)ViewBag.BlockTime, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.btId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                        <b>Pick off</b>
-                        <div class="form-group form-group-lg">
-                            <div class="form-line">
-                                <input type="text" class="form-control" value="Sai Gon" disabled />
-                            </div>
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.rPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.rPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                        <b>Pick off</b>
-                        <div class="form-group form-group-lg">
-                            <div class="form-line">
-                                <input type="text" class="form-control" value="Vung Tau" disabled />
-                            </div>
-                        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-                        <b>Price</b>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">attach_money</i>
-                            </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control money-dollar" value="10">
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary m-t-15 waves-effect">Save Changes</button>
-                 </div>   
-                </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to route list", "Route")
 </div>

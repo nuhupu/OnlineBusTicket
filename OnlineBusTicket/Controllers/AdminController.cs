@@ -2,6 +2,7 @@
 using OnlineBusTicket.Models.View;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -161,9 +162,7 @@ namespace OnlineBusTicket.Controllers
         {
             var admin = new AdminController();
             var buses = GetAllBuses();
-            var blockTimes = GetAllBlockTimes();
-            admin.GetSelectListBuses(buses);
-            admin.GetSelectListBlockTimes(blockTimes);
+            var blockTimes = GetAllBlockTimes();          
             ViewBag.Bus = admin.GetSelectListBuses(buses); ;
             ViewBag.BlockTime = admin.GetSelectListBlockTimes(blockTimes); ;
             return View();
@@ -218,7 +217,7 @@ namespace OnlineBusTicket.Controllers
 
         #region Route
         public ActionResult Route()
-        {
+        {           
             ViewBag.CounterName = new SelectList(db.Counters, "counId", "counName");
             var dao = new AdminController();
             var routeViews = dao.ListRoute();
@@ -290,7 +289,7 @@ namespace OnlineBusTicket.Controllers
 
         public ActionResult RouteDetails(int id)
         {
-
+            ViewBag.SeatNumber = new SelectList(db.Seats, "sId", "sNumber");
             ViewBag.CounterName = new SelectList(db.Counters, "counId", "counName");
             var dao = new AdminController();
             var routeViews = dao.ListRoute(id);
@@ -329,14 +328,19 @@ namespace OnlineBusTicket.Controllers
 
             try
             {
-                if (ModelState.IsValid)
+                var rd = from detail in db.RouteDetails where detail.sId == s && detail.rId == r select detail;
+                if (rd==null)
                 {
+                    if (ModelState.IsValid)
+                    {
 
-                    db.RouteDetails.Add(new RouteDetail { rId = r, sId = s,avaibility = 1 });
-                    db.SaveChanges();
+                        db.RouteDetails.Add(new RouteDetail { rId = r, sId = s, avaibility = 0 });
+                        db.SaveChanges();
 
 
+                    }
                 }
+                
             }
             catch (Exception)
             {
@@ -444,11 +448,110 @@ namespace OnlineBusTicket.Controllers
 
             return View();
         }
-        public ActionResult EditRoute()
+       
+        public ActionResult EditRoute(int id)
         {
+            var admin = new AdminController();
+            var buses = GetAllBuses();
+            var blockTimes = GetAllBlockTimes();
+            ViewBag.Bus = admin.GetSelectListBuses(buses); ;
+            ViewBag.BlockTime = admin.GetSelectListBlockTimes(blockTimes); ;
+            Route result = db.Routes.SingleOrDefault(a => a.rId.Equals(id));
+            if (result == null)
+            {
+                return HttpNotFound();
+            }
+            return View(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditRoute(Route route)
+        {
+            var admin = new AdminController();
+            var buses = GetAllBuses();
+            var blockTimes = GetAllBlockTimes();
+            ViewBag.Bus = admin.GetSelectListBuses(buses); ;
+            ViewBag.BlockTime = admin.GetSelectListBlockTimes(blockTimes); ;
+            try
+            {
+                Route result = db.Routes.SingleOrDefault(a => a.rId.Equals(route.rId));              
+                if (ModelState.IsValid)
+                {
+
+                    result.btId = route.btId;
+                    result.bId = route.bId;
+                    result.rPrice = route.rPrice;
+                    result.date = route.date;
+                    db.Entry(result).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Route", "Admin");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Please check if all fields are in correct formats.");
+                }
+
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes.");
+            }
             return View();
         }
 
+        //public ActionResult DeleteRoute(int id)
+        //{
+        //    try
+        //    {
+        //        BookingDetail result = db.BookingDetails.SingleOrDefault(a => a.rId.Equals(id));
+        //        if (result==null)
+        //        {
+        //            if (ModelState.IsValid)
+        //            {
+
+        //                Route route = db.Routes.SingleOrDefault(a => a.rId.Equals(id));
+        //                var routeDetails = db.RouteDetails.Where(b => b.rId == id);
+        //                try
+        //                {
+        //                    if (route != null)
+        //                    {
+        //                        foreach (var item in routeDetails)
+        //                        {
+        //                            db.RouteDetails.Remove(item);
+        //                            db.SaveChanges();
+        //                        }
+                                
+        //                        db.Routes.Remove(route);
+        //                        db.SaveChanges();
+        //                        ModelState.AddModelError("", "Route is deleted");
+        //                    }
+        //                    else
+        //                    {
+        //                        ModelState.AddModelError("", "This route does not exist");
+        //                    }
+        //                }
+        //                catch (Exception)
+        //                {
+
+        //                    throw;
+        //                }
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "This route is booked!");
+        //        }
+               
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //    return RedirectToAction("Route", "Admin");
+        //}
 
         #endregion Route
     }
