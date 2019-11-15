@@ -11,15 +11,34 @@ namespace OnlineBusTicket.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Account
     {
         public int aId { get; set; }
+        [Required]
+        [Display(Name = "UserName:")]
         public string aUsername { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password:")]
         public string aPassword { get; set; }
+        [Required]
+        [Display(Name = "Name:")]
         public string aName { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Birthday:")]
         public System.DateTime aBirthday { get; set; }
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Display(Name = "Email:")]
         public string aEmail { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone Number:")]
+        [Required(ErrorMessage = "Phone Number Required!")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                   ErrorMessage = "Entered phone format is not valid.")]
         public string aPhone { get; set; }
     }
 }
