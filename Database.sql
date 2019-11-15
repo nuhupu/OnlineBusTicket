@@ -411,7 +411,7 @@ INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'13')
 INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'14')
 INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'15')
 INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'16')
-INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'17')s
+INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'17')
 INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'18')
 INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'19')
 INSERT INTO [dbo].[Seat] (bId,sNumber) VALUES(1,'20')

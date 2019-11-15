@@ -301,15 +301,16 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
+                    <li >
                         <a href="@Url.Action("Index", "Admin")">
-                            <i class="material-icons">home </i><span>HOME</span>
+                            <i class="material-icons">home </i>
+                            <span>HOME</span>
                         </a>
 
 
                     </li>
                     <li>
-                        <a href="@Url.Action("Index", "Employee")>
+                        <a href="@Url.Action("Index", "Employee")">
                             <i class="material-icons">layers</i>
                             <span>EMPLOYEE</span>
                         </a>
@@ -321,10 +322,14 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="@Url.Action("Index", "Account")>Account</a>
+                                <a href="@Url.Action("Index", "Account")">
+                                <span>Account</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index", "Customer")>Customer</a>
+                                <a href="@Url.Action("Index", "Customer")">
+                                <span>Customer</span>
+                                </a>
                             </li>
                         </ul>
                     </li>
